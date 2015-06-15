@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   slave.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 00:37:47 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/16 00:06:10 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/16 00:32:13 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
-#include "msg.h"
+#include <unistd.h>
+#include <pty.h>
 
-int				main(int argc, char **argv)
+t_bool			start_slave(t_j *j)
 {
-	t_j				j;
+	pid_t			pid;
+	struct winsize	win;
 
-	if (!ft_tinit(&(j.term)))
-		return (ft_fdprintf(2, E_TERM), 1);
-	if (!parse_argv(&j, argc, argv))
-		return (2);
-	if (!start_slave(&j))
-		return (1);
-	start_master(&j);
-	return (0);
+	if (ioctl(0, TIOCGWINSZ, &win) < 0)
+		return (false);
+	if ((pid = forkpty(&(j->master), NULL, &(j->term.save), &win)) < 0)
+		return (false);
+	if (pid == 0)
+	{
+		ft_exec(j->cmd, NULL);
+		_exit(1);
+	}
+	j->pid = pid;
+	return (true);
 }

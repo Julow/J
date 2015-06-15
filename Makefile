@@ -33,7 +33,7 @@ LD_CC := clang
 C_FLAGS := -Wall -Wextra -Werror -O2
 
 # Linking flags
-LD_FLAGS := -L libft -l ft -l termcap
+LD_FLAGS := -L libft -l ft -l termcap -l util
 
 # C include flags
 C_HEADS := -I include -I libft
@@ -43,10 +43,12 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
-	o/srcs/main.o
+	o/srcs/main.o \
+	o/srcs/master.o \
+	o/srcs/slave.o
 
-MSG_0 := printf '\033[0;32m%-13.13s\033[0;0m\r'
-MSG_1 := printf '\033[0;31m%-13.13s\033[0;0m\n'
+MSG_0 := printf '\033[0;32m%-15.15s\033[0;0m\r'
+MSG_1 := printf '\033[0;31m%-15.15s\033[0;0m\n'
 MSG_END := printf '\n'
 
 .SILENT:
@@ -62,6 +64,14 @@ o/srcs/argv.o: srcs/argv.c include/j.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/main.o: srcs/main.c include/j.h include/msg.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/master.o: srcs/master.c include/j.h include/msg.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/slave.o: srcs/slave.c include/j.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 00:03:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 00:37:39 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ typedef struct	s_j
 	t_term			term;
 	t_dstr			line;
 	char			**cmd;
+	int				master;
+	pid_t			pid;
 }				t_j;
 
 t_bool			parse_argv(t_j *j, int argc, char **argv);
+
+t_bool			start_slave(t_j *j);
+void			start_master(t_j *j);
 
 #endif
