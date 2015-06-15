@@ -43,12 +43,14 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
+	o/srcs/ft_tmakeraw.o \
+	o/srcs/handle_key.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
 	o/srcs/slave.o
 
-MSG_0 := printf '\033[0;32m%-15.15s\033[0;0m\r'
-MSG_1 := printf '\033[0;31m%-15.15s\033[0;0m\n'
+MSG_0 := printf '\033[0;32m%-20.20s\033[0;0m\r'
+MSG_1 := printf '\033[0;31m%-20.20s\033[0;0m\n'
 MSG_END := printf '\n'
 
 .SILENT:
@@ -60,6 +62,14 @@ $(NAME): $(O_FILES)
 	@$(MSG_0) $@ ; $(LD_CC) -o $@ $(O_FILES) $(LD_FLAGS) && $(MSG_END) || $(MSG_1) $@
 
 o/srcs/argv.o: srcs/argv.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_tmakeraw.o: srcs/ft_tmakeraw.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/handle_key.o: srcs/handle_key.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

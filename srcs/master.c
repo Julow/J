@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 00:37:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 00:53:17 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,30 @@
 #include <unistd.h>
 #include <sys/select.h>
 
+static t_bool	read_stdin(t_j *j)
+{
+	int				key;
+
+	if ((key = ft_getchr()) == EOF)
+		return (false);
+	handle_key(j, key);
+	return (true);
+}
+
+static t_bool	read_slave(t_j *j)
+{
+	char			buff[512];
+	int				len;
+
+	if ((len = read(j->master, buff, 512)) < 0)
+		return (false);
+	write(1, buff, len);
+	return (true);
+}
+
 void			start_master(t_j *j)
 {
 	fd_set			fd_read;
-	char			buff[512];
-	int				len;
 
 	while (true)
 	{
@@ -27,17 +46,9 @@ void			start_master(t_j *j)
 		FD_SET(j->master, &fd_read);
 		if (select(j->master + 1, &fd_read, NULL, NULL, NULL) < 0)
 			continue ;
-		if (FD_ISSET(0, &fd_read))
-		{
-			if ((len = read(0, buff, len)) <= 0)
-				break ;
-			write(j->master, buff, len);
-		}
-		if (FD_ISSET(j->master, &fd_read))
-		{
-			if ((len = read(j->master, buff, len)) <= 0)
-				break ;
-			write(1, buff, len);
-		}
+		if (FD_ISSET(0, &fd_read) && !read_stdin(j))
+			break ;
+		if (FD_ISSET(j->master, &fd_read) && !read_slave(j))
+			break ;
 	}
 }
