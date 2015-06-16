@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 00:53:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 20:24:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static t_bool	read_stdin(t_j *j)
 
 	if ((key = ft_getchr()) == EOF)
 		return (false);
-	handle_key(j, key);
+	if (!handle_key(j, key))
+		ft_dstradd_char(&(j->line), key);
 	return (true);
 }
 

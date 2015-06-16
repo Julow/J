@@ -43,14 +43,17 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
-	o/srcs/ft_tmakeraw.o \
 	o/srcs/handle_key.o \
+	o/srcs/j_flush.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
-	o/srcs/slave.o
+	o/srcs/slave.o \
+	o/srcs/keys/key_eof.o \
+	o/srcs/keys/key_int.o \
+	o/srcs/keys/key_nl.o
 
-MSG_0 := printf '\033[0;32m%-20.20s\033[0;0m\r'
-MSG_1 := printf '\033[0;31m%-20.20s\033[0;0m\n'
+MSG_0 := printf '\033[0;32m%-21.21s\033[0;0m\r'
+MSG_1 := printf '\033[0;31m%-21.21s\033[0;0m\n'
 MSG_END := printf '\n'
 
 .SILENT:
@@ -65,24 +68,36 @@ o/srcs/argv.o: srcs/argv.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/ft_tmakeraw.o: srcs/ft_tmakeraw.c include/j.h
+o/srcs/handle_key.o: srcs/handle_key.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/handle_key.o: srcs/handle_key.c include/j.h
+o/srcs/j_flush.o: srcs/j_flush.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/main.o: srcs/main.c include/j.h include/msg.h
+o/srcs/main.o: srcs/main.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/master.o: srcs/master.c include/j.h include/msg.h
+o/srcs/master.o: srcs/master.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/slave.o: srcs/slave.c include/j.h include/msg.h
+o/srcs/slave.o: srcs/slave.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_eof.o: srcs/keys/key_eof.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_int.o: srcs/keys/key_int.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_nl.o: srcs/keys/key_nl.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 $(LIBS):
@@ -91,7 +106,7 @@ $(LIBS):
 
 clean:
 	@rm -f $(O_FILES) 2> /dev/null || true
-	@rmdir -p o/srcs $(O_DIR) 2> /dev/null || true
+	@rmdir -p o/srcs/keys o/srcs $(O_DIR) 2> /dev/null || true
 .PHONY: clean
 
 fclean: clean
