@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:14:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 20:25:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 22:58:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,4 +17,5 @@ void			j_flush(t_j *j)
 {
 	write(j->master, j->line.str, j->line.length);
 	ft_dstrpop(&(j->line), -1);
+	j->cursor = 0;
 }

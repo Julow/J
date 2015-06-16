@@ -46,15 +46,18 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_openpt.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_flush.o \
+	o/srcs/j_refresh.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
 	o/srcs/slave.o \
+	o/srcs/keys/key_arrows.o \
+	o/srcs/keys/key_delete.o \
 	o/srcs/keys/key_eof.o \
 	o/srcs/keys/key_int.o \
 	o/srcs/keys/key_nl.o
 
-MSG_0 := printf '\033[0;32m%-21.21s\033[0;0m\r'
-MSG_1 := printf '\033[0;31m%-21.21s\033[0;0m\n'
+MSG_0 := printf '\033[0;32m%-24.24s\033[0;0m\r'
+MSG_1 := printf '\033[0;31m%-24.24s\033[0;0m\n'
 MSG_END := printf '\n'
 
 .SILENT:
@@ -81,6 +84,10 @@ o/srcs/j_flush.o: srcs/j_flush.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
+o/srcs/j_refresh.o: srcs/j_refresh.c include/j.h include/keys.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
 o/srcs/main.o: srcs/main.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
@@ -91,6 +98,14 @@ o/srcs/master.o: srcs/master.c include/j.h include/keys.h include/msg.h
 
 o/srcs/slave.o: srcs/slave.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_arrows.o: srcs/keys/key_arrows.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_delete.o: srcs/keys/key_delete.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/keys/key_eof.o: srcs/keys/key_eof.c include/j.h include/keys.h include/msg.h

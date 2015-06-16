@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_int.c                                          :+:      :+:    :+:   */
+/*   j_refresh.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/16 20:35:49 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 22:45:29 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/16 22:09:40 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/16 22:55:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "j.h"
 
-void			key_int(t_j *j, int key)
+void			j_refresh(t_j *j)
 {
-	if (j->line.length > 0)
-	{
-		ft_dstrpop(&(j->line), -1);
-		j->cursor = 0;
-		return ;
-	}
-	ft_dstradd_char(&(j->line), key);
-	j_flush(j);
+	t_sub			prompt = SUBC("PROMPT > ");
+
+	TPS("cr");
+	TPS("ce");
+	PN(prompt.str, prompt.length);
+	PN(j->line.str, j->line.length);
+	PS(tgoto(tgetstr("ch", NULL), 0, j->cursor + prompt.length));
+	FL;
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 20:55:18 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 22:37:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,21 @@
 **  Use of ft_regex
 **  Config
 **  Globing
+**  Disable j
 */
+
+/*
+** termcaps
+** ----
+** cm			Move cursor x y
+** ch			Move cursor x
+** cr			Move cursor to left
+** cl			Clear screen
+** cd			Clear from cursor to bottom
+** ce			Clear from cursor to right
+*/
+
+# define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
 typedef struct	s_j
 {
@@ -40,6 +54,7 @@ typedef struct	s_j
 	t_dstr			line;
 	char			**cmd;
 	int				master;
+	int				cursor;
 }				t_j;
 
 /*
@@ -56,12 +71,13 @@ void			start_master(t_j *j);
 /*
 ** keys
 */
-t_bool			handle_key(t_j *j, int key);
+void			handle_key(t_j *j, int key);
 
 /*
 ** control
 */
 void			j_flush(t_j *j);
+void			j_refresh(t_j *j);
 
 /*
 ** utils

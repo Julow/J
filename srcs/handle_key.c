@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 20:36:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 23:03:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ const t_binding	g_bindings[] = {
 	{0x03, &key_int},
 	{0x04, &key_eof},
 	{'\r', &key_nl},
+	{KEY_UP, &key_up},
+	{KEY_RIGHT, &key_right},
+	{KEY_DOWN, &key_down},
+	{KEY_LEFT, &key_left},
+	{KEY_DELETE, &key_delete},
+	{KEY_BACK, &key_backspace},
 	{'\0', NULL}
 };
 
-t_bool			handle_key(t_j *j, int key)
+void			handle_key(t_j *j, int key)
 {
 	int				i;
 
@@ -29,9 +35,11 @@ t_bool			handle_key(t_j *j, int key)
 		if (g_bindings[i].key == key)
 		{
 			g_bindings[i].f(j, key);
-			return (true);
+			return ;
 		}
 	if (!ft_isalnum(key))
-		ft_printf("Unhandled key: %d\r\n", key);
-	return (false);
+		ft_fdprintf(2, "\nUnhandled key: %d\r\n", key);
+	i = ft_strlen((char*)&key);
+	ft_dstrset(&(j->line), j->cursor, j->cursor, SUB((char*)&key, i));
+	j->cursor += i;
 }
