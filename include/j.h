@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 20:25:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/16 20:55:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ void			j_flush(t_j *j);
 ** utils
 */
 void			ft_tmakeraw(t_term *term);
+t_bool			ft_openpt(int *master, int *slave);
 
 #endif

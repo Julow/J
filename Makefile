@@ -33,7 +33,7 @@ LD_CC := clang
 C_FLAGS := -Wall -Wextra -Werror -O2
 
 # Linking flags
-LD_FLAGS := -L libft -l ft -l termcap -l util
+LD_FLAGS := -L libft -l ft -l termcap
 
 # C include flags
 C_HEADS := -I include -I libft
@@ -43,6 +43,7 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
+	o/srcs/ft_openpt.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_flush.o \
 	o/srcs/main.o \
@@ -65,6 +66,10 @@ $(NAME): $(O_FILES)
 	@$(MSG_0) $@ ; $(LD_CC) -o $@ $(O_FILES) $(LD_FLAGS) && $(MSG_END) || $(MSG_1) $@
 
 o/srcs/argv.o: srcs/argv.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_openpt.o: srcs/ft_openpt.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
