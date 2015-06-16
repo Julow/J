@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 22:37:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/17 00:13:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_j
 	t_term			term;
 	t_dstr			line;
 	char			**cmd;
+	int				flags;
 	int				master;
 	int				cursor;
 }				t_j;
