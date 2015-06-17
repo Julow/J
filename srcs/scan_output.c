@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/17 22:30:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:31:33 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 00:38:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int		scan_escape(t_j *j, t_sub output)
 {
-	if (ft_strstart(output.str, j->caps.te))
-		return ((j->flags |= FLAG_TE), ft_strlen(j->caps.te));
 	if (ft_strstart(output.str, j->caps.ti))
-		return ((j->flags &= ~FLAG_TE), ft_strlen(j->caps.ti));
+		return ((j->flags |= FLAG_TI), ft_strlen(j->caps.ti));
+	if (ft_strstart(output.str, j->caps.te))
+		return ((j->flags &= ~FLAG_TI), ft_strlen(j->caps.te));
 	return (1);
 }
 

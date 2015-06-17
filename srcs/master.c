@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:30:39 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 00:42:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@
 static t_bool	read_stdin(t_j *j)
 {
 	int				key;
+	int				len;
 
-	if ((key = ft_getchr()) == EOF)
+	key = 0;
+	if ((len = read(0, &key, sizeof(int))) <= 0)
 		return (false);
+	if (j->flags & FLAG_TI)
+		return (write(j->master, &key, len), true);
 	handle_key(j, key);
 	j_set(j, J_REFRESH);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:22:21 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 00:34:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct	s_j
 	int				cursor;
 }				t_j;
 
-# define FLAG_TE		(1 << 1)
+# define FLAG_TI		(1 << 1)
 
 # define J_HIDE			(1 << 1)
 # define J_SHOW			(1 << 2)
