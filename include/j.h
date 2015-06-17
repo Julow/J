@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/17 00:13:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 00:22:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,33 @@
 
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
+# define MASTER_BUFF	512
+
+typedef struct	s_caps
+{
+	char			*ch;
+	char			*ce;
+	char			*te;
+	char			*ti;
+}				t_caps;
+
 typedef struct	s_j
 {
 	t_term			term;
 	t_dstr			line;
 	char			**cmd;
+	t_caps			caps;
 	int				flags;
 	int				master;
+	int				line_start;
 	int				cursor;
 }				t_j;
+
+# define FLAG_TE		(1 << 1)
+
+# define J_HIDE			(1 << 1)
+# define J_SHOW			(1 << 2)
+# define J_REFRESH		(J_HIDE | J_SHOW)
 
 /*
 ** argv
@@ -78,7 +96,12 @@ void			handle_key(t_j *j, int key);
 ** control
 */
 void			j_flush(t_j *j);
-void			j_refresh(t_j *j);
+void			j_set(t_j *j, int flags);
+
+/*
+** output
+*/
+void			scan_output(t_j *j, t_sub output);
 
 /*
 ** utils

@@ -49,6 +49,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/j_refresh.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
+	o/srcs/scan_output.o \
 	o/srcs/slave.o \
 	o/srcs/keys/key_arrows.o \
 	o/srcs/keys/key_ctrl_a.o \
@@ -96,6 +97,10 @@ o/srcs/main.o: srcs/main.c include/j.h include/keys.h include/msg.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/master.o: srcs/master.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/scan_output.o: srcs/scan_output.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
