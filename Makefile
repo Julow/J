@@ -44,6 +44,8 @@ C_HEADS := -I include -I libft
 
 O_FILES := o/srcs/argv.o \
 	o/srcs/ft_openpt.o \
+	o/srcs/ft_subchr.o \
+	o/srcs/ft_subindex.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_refresh.o \
@@ -77,6 +79,14 @@ o/srcs/argv.o: srcs/argv.c include/j.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_openpt.o: srcs/ft_openpt.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_subchr.o: srcs/ft_subchr.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_subindex.o: srcs/ft_subindex.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

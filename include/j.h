@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:34:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 01:31:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
 # define MASTER_BUFF	512
+
+# define MAX_ESCAPE_LEN	8
 
 typedef struct	s_caps
 {
@@ -108,5 +110,8 @@ void			scan_output(t_j *j, t_sub output);
 */
 void			ft_tmakeraw(t_term *term);
 t_bool			ft_openpt(int *master, int *slave);
+
+int				ft_subindex(t_sub sub, char c);
+int				ft_subchr(t_sub sub, t_is mask);
 
 #endif

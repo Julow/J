@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/17 22:30:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:38:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 01:31:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 static int		scan_escape(t_j *j, t_sub output)
 {
+	int				len;
+
 	if (ft_strstart(output.str, j->caps.ti))
-		return ((j->flags |= FLAG_TI), ft_strlen(j->caps.ti));
-	if (ft_strstart(output.str, j->caps.te))
-		return ((j->flags &= ~FLAG_TI), ft_strlen(j->caps.te));
-	return (1);
+		j->flags |= FLAG_TI;
+	else if (ft_strstart(output.str, j->caps.te))
+		j->flags &= ~FLAG_TI;
+	output.length = MIN(output.length, MAX_ESCAPE_LEN);
+	len = ft_subchr(output, IS_ALPHA);
+	return ((len <= 0) ? output.length : len + 1);
 }
 
 void			scan_output(t_j *j, t_sub output)
@@ -36,5 +40,5 @@ void			scan_output(t_j *j, t_sub output)
 			i += scan_escape(j, ft_sub(output.str, i, -1)) - 1;
 		else
 			line_i++;
-	j->line_start = line_i;
+	j->line_start = line_i % j->term.width;
 }
