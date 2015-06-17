@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 23:39:34 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 00:36:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/17 13:20:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # define PREFIX		"j: "
 
 # define E_TERM		PREFIX "Cannot init termcaps" ENDL
+# define E_SLAVE	PREFIX "Cannot init tty" ENDL
 
 #endif

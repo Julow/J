@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:50:05 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 21:15:18 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/17 13:24:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ t_bool			ft_openpt(int *master, int *slave)
 		return (false);
 	if (unlockpt(master_fd) < 0)
 		return (false);
-	if (ioctl(master_fd, TIOCSWINSZ, &win) < 0)
-		return (false);
 	if ((*slave = open(ptsname(master_fd), O_RDWR)) < 0)
+		return (false);
+	if (ioctl(master_fd, TIOCSWINSZ, &win) < 0)
 		return (false);
 	*master = master_fd;
 	return (true);
