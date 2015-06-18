@@ -6,19 +6,22 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:21:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 23:42:50 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 #include "msg.h"
 
-#define TSTR_SUB(j,c)	((j->caps.c = tgetstr(#c, NULL)) == NULL)
+#define CAP(c,d)	if ((j->caps.c = tgetstr(#c, NULL)) == NULL) j->caps.c = d;
 
 static t_bool	init_caps(t_j *j)
 {
-	if (TSTR_SUB(j, ch) || TSTR_SUB(j, ce) || TSTR_SUB(j, te)
-		|| TSTR_SUB(j, ti))
+	CAP(ch, NULL);
+	CAP(ce, NULL);
+	CAP(ti, "\033[?1049h");
+	CAP(te, "\033[?1049l");
+	if (j->caps.ch == NULL || j->caps.ce == NULL)
 		return (false);
 	return (true);
 }

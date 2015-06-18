@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 01:31:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/18 22:21:34 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,6 @@
 **  Disable j
 */
 
-/*
-** termcaps
-** ----
-** cm			Move cursor x y
-** ch			Move cursor x
-** cr			Move cursor to left
-** cl			Clear screen
-** cd			Clear from cursor to bottom
-** ce			Clear from cursor to right
-*/
-
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
 # define MASTER_BUFF	512
@@ -54,10 +43,10 @@
 
 typedef struct	s_caps
 {
-	char			*ch;
-	char			*ce;
-	char			*te;
-	char			*ti;
+	char			*ch; // Move cursor x (Maybe unsupported)
+	char			*ce; // Clear from cursor to right
+	char			*ti; // Enter TI mode
+	char			*te; // Exit TI mode
 }				t_caps;
 
 typedef struct	s_j
