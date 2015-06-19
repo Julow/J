@@ -6,15 +6,14 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 23:07:36 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 00:24:42 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/19 23:57:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys.h"
 
-void			key_ctrl_l(t_j *j, int key)
+void			key_ctrl_l(t_j *j)
 {
 	TPS("cl");
-	j_set(j, J_REFRESH);
-	(void)key;
+	(void)j;
 }

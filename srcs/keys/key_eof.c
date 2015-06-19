@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:31:09 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 20:33:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/19 23:55:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void			key_eof(t_j *j, int key)
 {
 	if (j->line.length > 0)
 		return ;
-	ft_dstradd_char(&(j->line), key);
+	ft_dstradd_char(&(j->line), (char)key);
 	j_flush(j);
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/17 00:24:26 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 00:00:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ const t_binding	g_bindings[] = {
 	{KEY_CTRL_L,	&key_ctrl_l},
 	{KEY_CTRL_A,	&key_ctrl_a},
 	{KEY_CTRL_E,	&key_ctrl_e},
+	{74995417045787,&key_ctrl_left},
+	{73895905418011,&key_ctrl_right},
 	{'\0',			NULL}
 };
 
-void			handle_key(t_j *j, int key)
+void			handle_key(t_j *j, t_ulong key)
 {
 	int				i;
 
@@ -41,7 +43,7 @@ void			handle_key(t_j *j, int key)
 			return ;
 		}
 	if (!ft_isalnum(key))
-		ft_fdprintf(2, "\nUnhandled key: %d\r\n", key);
+		ft_fdprintf(2, "\nUnhandled key: %lld\r\n", key);
 	i = ft_strlen((char*)&key);
 	ft_dstrset(&(j->line), j->cursor, j->cursor, SUB((char*)&key, i));
 	j->cursor += i;

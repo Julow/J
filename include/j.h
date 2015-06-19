@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/18 22:21:34 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/19 23:58:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			start_master(t_j *j);
 /*
 ** keys
 */
-void			handle_key(t_j *j, int key);
+void			handle_key(t_j *j, t_ulong key);
 
 /*
 ** control

@@ -55,6 +55,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/slave.o \
 	o/srcs/keys/key_arrows.o \
 	o/srcs/keys/key_ctrl_a.o \
+	o/srcs/keys/key_ctrl_arrows.o \
 	o/srcs/keys/key_ctrl_e.o \
 	o/srcs/keys/key_ctrl_l.o \
 	o/srcs/keys/key_delete.o \
@@ -62,8 +63,8 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_int.o \
 	o/srcs/keys/key_nl.o
 
-MSG_0 := printf '\033[0;32m%-24.24s\033[0;0m\r'
-MSG_1 := printf '\033[0;31m%-24.24s\033[0;0m\n'
+MSG_0 := printf '\033[0;32m%-29.29s\033[0;0m\r'
+MSG_1 := printf '\033[0;31m%-29.29s\033[0;0m\n'
 MSG_END := printf '\n'
 
 .SILENT:
@@ -123,6 +124,10 @@ o/srcs/keys/key_arrows.o: srcs/keys/key_arrows.c include/j.h include/keys.h incl
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/keys/key_ctrl_a.o: srcs/keys/key_ctrl_a.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_ctrl_arrows.o: srcs/keys/key_ctrl_arrows.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

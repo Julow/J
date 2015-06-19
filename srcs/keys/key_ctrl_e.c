@@ -6,14 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/17 00:24:43 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/17 00:25:47 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/19 23:49:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 
-void			key_ctrl_e(t_j *j, int key)
+void			key_ctrl_e(t_j *j)
 {
 	j->cursor = j->line.length;
-	(void)key;
 }

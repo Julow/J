@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:35:49 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 22:45:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/19 23:55:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ void			key_int(t_j *j, int key)
 		j->cursor = 0;
 		return ;
 	}
-	ft_dstradd_char(&(j->line), key);
+	ft_dstradd_char(&(j->line), (char)key);
 	j_flush(j);
 }
