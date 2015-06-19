@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 00:25:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 00:53:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ const t_binding	g_bindings[] = {
 	{KEY_HOME,			&key_ctrl_a},
 	{KEY_CTRL_E,		&key_ctrl_e},
 	{KEY_END,			&key_ctrl_e},
+	{KEY_CTRL_X,		&key_ctrl_x},
+	{KEY_CTRL_K,		&key_ctrl_k},
 	{74995417045787,	&key_ctrl_left},
 	{73895905418011,	&key_ctrl_right},
 	{'\0',				NULL}

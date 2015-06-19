@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 00:18:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 01:12:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,36 @@
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
+**  Keep Delete history
 **  Globing
 **  Disable j
+*/
+
+/*
+** ========================================================================== **
+** Bindings
+** -----
+** Motion:
+**  left / right		Move cursor into line
+**  c+left / c+right	Move cursor into line word by word
+**  c+A / home			Move to the start of the line
+**  c+E / end			Move to the end of the line
+** -
+** Delete:
+**  c+C					Clear line (if line is not empty)
+**  delete				Delete
+**  c+H					Backspace by word
+**  c+delete			Delete by word
+**  c+K					Delete from the cursor to the end of line
+**  c+X					Delete current word
+** -
+** (TODO) Paste:
+**  (TODO) c+Y			Paste last delete
+**  (TODO) c+V			Do again last paste
+** -
+** (TODO) Selection:
+**  (TODO) s+right / s+left		Select
+**  (TODO) s+c+right / s+c+left	Select by word
 */
 
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
@@ -99,6 +127,7 @@ void			handle_key(t_j *j, t_ulong key);
 /*
 ** controls
 */
+t_val			j_word_motion(t_j *j);
 t_val			j_word(t_j *j);
 
 /*

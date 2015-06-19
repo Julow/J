@@ -59,7 +59,9 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_ctrl_arrows.o \
 	o/srcs/keys/key_ctrl_delete.o \
 	o/srcs/keys/key_ctrl_e.o \
+	o/srcs/keys/key_ctrl_k.o \
 	o/srcs/keys/key_ctrl_l.o \
+	o/srcs/keys/key_ctrl_x.o \
 	o/srcs/keys/key_delete.o \
 	o/srcs/keys/key_eof.o \
 	o/srcs/keys/key_int.o \
@@ -145,7 +147,15 @@ o/srcs/keys/key_ctrl_e.o: srcs/keys/key_ctrl_e.c include/j.h include/keys.h incl
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
+o/srcs/keys/key_ctrl_k.o: srcs/keys/key_ctrl_k.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
 o/srcs/keys/key_ctrl_l.o: srcs/keys/key_ctrl_l.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_ctrl_x.o: srcs/keys/key_ctrl_x.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
