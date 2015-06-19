@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/19 23:58:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 00:18:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ typedef struct	s_j
 	int				cursor;
 }				t_j;
 
+typedef struct	s_val
+{
+	int				from;
+	int				to;
+}				t_val;
+
+# define VAL(f,t)		((t_val){(f), (t)})
+
 # define FLAG_TI		(1 << 1)
 
 # define J_HIDE			(1 << 1)
@@ -73,10 +81,15 @@ typedef struct	s_j
 t_bool			parse_argv(t_j *j, int argc, char **argv);
 
 /*
-** pty
+** term
 */
 t_bool			start_slave(t_j *j);
 void			start_master(t_j *j);
+
+void			j_flush(t_j *j);
+void			j_set(t_j *j, int flags);
+
+void			scan_output(t_j *j, t_sub output);
 
 /*
 ** keys
@@ -84,15 +97,9 @@ void			start_master(t_j *j);
 void			handle_key(t_j *j, t_ulong key);
 
 /*
-** control
+** controls
 */
-void			j_flush(t_j *j);
-void			j_set(t_j *j, int flags);
-
-/*
-** output
-*/
-void			scan_output(t_j *j, t_sub output);
+t_val			j_word(t_j *j);
 
 /*
 ** utils

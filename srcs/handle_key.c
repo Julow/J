@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 00:00:56 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 00:25:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,25 @@
 #include "keys.h"
 
 const t_binding	g_bindings[] = {
-	{0x03,			&key_int},
-	{0x04,			&key_eof},
-	{'\r',			&key_nl},
-	{KEY_UP,		&key_up},
-	{KEY_RIGHT,		&key_right},
-	{KEY_DOWN,		&key_down},
-	{KEY_LEFT,		&key_left},
-	{KEY_DELETE,	&key_delete},
-	{KEY_BACK,		&key_backspace},
-	{KEY_CTRL_L,	&key_ctrl_l},
-	{KEY_CTRL_A,	&key_ctrl_a},
-	{KEY_CTRL_E,	&key_ctrl_e},
-	{74995417045787,&key_ctrl_left},
-	{73895905418011,&key_ctrl_right},
-	{'\0',			NULL}
+	{0x03,				&key_int},
+	{0x04,				&key_eof},
+	{'\r',				&key_nl},
+	{KEY_UP,			&key_up},
+	{KEY_RIGHT,			&key_right},
+	{KEY_DOWN,			&key_down},
+	{KEY_LEFT,			&key_left},
+	{KEY_DELETE,		&key_delete},
+	{KEY_BACK,			&key_backspace},
+	{138767091587867,	&key_ctrl_delete},
+	{KEY_CTRL_H,		&key_ctrl_backspace},
+	{KEY_CTRL_L,		&key_ctrl_l},
+	{KEY_CTRL_A,		&key_ctrl_a},
+	{KEY_HOME,			&key_ctrl_a},
+	{KEY_CTRL_E,		&key_ctrl_e},
+	{KEY_END,			&key_ctrl_e},
+	{74995417045787,	&key_ctrl_left},
+	{73895905418011,	&key_ctrl_right},
+	{'\0',				NULL}
 };
 
 void			handle_key(t_j *j, t_ulong key)
