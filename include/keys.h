@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 00:52:57 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 22:34:14 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,7 @@ void			key_ctrl_a(t_j *j);
 
 void			key_ctrl_x(t_j *j);
 void			key_ctrl_k(t_j *j);
+
+void			key_debug(t_j *j);
 
 #endif

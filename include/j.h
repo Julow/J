@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 01:12:55 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 22:41:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
-**  Keep Delete history
+**  Deletion history
 **  Globing
 **  Disable j
 */
@@ -40,13 +40,17 @@
 ** ========================================================================== **
 ** Bindings
 ** -----
+** c = ctrl
+** s = shift
+** m = alt / option
+** -----
 ** Motion:
 **  left / right		Move cursor into line
 **  c+left / c+right	Move cursor into line word by word
 **  c+A / home			Move to the start of the line
 **  c+E / end			Move to the end of the line
 ** -
-** Delete:
+** Delete: (TODO: Deletion history)
 **  c+C					Clear line (if line is not empty)
 **  delete				Delete
 **  c+H					Backspace by word
@@ -61,6 +65,10 @@
 ** (TODO) Selection:
 **  (TODO) s+right / s+left		Select
 **  (TODO) s+c+right / s+c+left	Select by word
+** -
+** Other:
+**  m+!					Active debug print
+**  c+space				Disable J
 */
 
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
@@ -98,6 +106,7 @@ typedef struct	s_val
 # define VAL(f,t)		((t_val){(f), (t)})
 
 # define FLAG_TI		(1 << 1)
+# define FLAG_DEBUG		(1 << 2)
 
 # define J_HIDE			(1 << 1)
 # define J_SHOW			(1 << 2)

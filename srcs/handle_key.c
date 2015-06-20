@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 00:53:18 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 22:35:42 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ const t_binding	g_bindings[] = {
 	{KEY_CTRL_K,		&key_ctrl_k},
 	{74995417045787,	&key_ctrl_left},
 	{73895905418011,	&key_ctrl_right},
+	{8475,				&key_debug},
 	{'\0',				NULL}
 };
 
@@ -48,8 +49,10 @@ void			handle_key(t_j *j, t_ulong key)
 			g_bindings[i].f(j, key);
 			return ;
 		}
-	if (!ft_isalnum(key))
-		ft_fdprintf(2, "\nUnhandled key: %lld\r\n", key);
+	if (j->flags & FLAG_DEBUG && !ft_isalnum(key))
+		ft_fdprintf(2, "\r\nUnhandled key: %lld\r\n", key);
+	if (!ft_isascii(key))
+		return ;
 	i = ft_strlen((char*)&key);
 	ft_dstrset(&(j->line), j->cursor, j->cursor, SUB((char*)&key, i));
 	j->cursor += i;

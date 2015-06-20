@@ -6,11 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/19 23:59:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 22:42:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
+#include "keys.h"
 #include <unistd.h>
 #include <sys/select.h>
 
@@ -22,6 +23,8 @@ static t_bool	read_stdin(t_j *j)
 	key = 0;
 	if ((len = read(0, &key, sizeof(t_ulong))) <= 0)
 		return (false);
+	if (key == KEY_CTRL_SPACE)
+		j->flags ^= FLAG_TI;
 	if (j->flags & FLAG_TI)
 		return (write(j->master, &key, len), true);
 	handle_key(j, key);
