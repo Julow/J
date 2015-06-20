@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 22:34:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 00:08:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct	s_binding
 # define KEY_CTRL_H		8
 # define KEY_CTRL_K		11
 # define KEY_CTRL_X		24
+# define KEY_CTRL_V		22
+# define KEY_CTRL_Y		25
 # define KEY_CTRL_SPACE	0
 
 # define KEY_END		4607771
@@ -66,6 +68,9 @@ void			key_ctrl_a(t_j *j);
 
 void			key_ctrl_x(t_j *j);
 void			key_ctrl_k(t_j *j);
+
+void			key_ctrl_v(t_j *j);
+void			key_ctrl_y(t_j *j);
 
 void			key_debug(t_j *j);
 

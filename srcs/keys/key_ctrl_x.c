@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/20 00:51:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 01:06:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 00:13:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void			key_ctrl_x(t_j *j)
 
 	val = j_word(j);
 	if (val.from < val.to)
+	{
+		j_deletion(j, ft_dstrsub(&(j->line), val.from, val.to));
 		ft_dstrset(&(j->line), val.from, val.to, SUBC(""));
+	}
 	j->cursor = val.from;
 }

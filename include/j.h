@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 23:56:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 00:18:20 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
-**  Deletion history
 **  Globing
 **  Disable j
 */
@@ -51,7 +50,7 @@
 **  c+E / end			Move to the end of the line
 **  up / right			Navigate in the history
 ** -
-** Delete: (TODO: Deletion history)
+** Delete:
 **  c+C					Clear line (if line is not empty)
 **  delete				Delete
 **  c+H					Backspace by word
@@ -59,9 +58,9 @@
 **  c+K					Delete from the cursor to the end of line
 **  c+X					Delete current word
 ** -
-** (TODO) Paste:
-**  (TODO) c+Y			Paste last delete
-**  (TODO) c+V			Do again last paste
+** Paste:
+**  c+Y					Paste last delete
+**  c+V					Paste last delete but keep it in the history
 ** -
 ** (TODO) Selection:
 **  (TODO) s+right / s+left		Select
@@ -104,6 +103,7 @@ typedef struct	s_j
 	t_dstr			line;
 	t_hist			*history;
 	t_hist			*hist_curr;
+	t_hist			*deletions;
 	int				line_start;
 	int				cursor;
 }				t_j;
@@ -151,6 +151,7 @@ t_val			j_word_motion(t_j *j);
 t_val			j_word(t_j *j);
 
 void			j_history(t_j *j, t_dstr str);
+void			j_deletion(t_j *j, t_sub str);
 
 /*
 ** utils

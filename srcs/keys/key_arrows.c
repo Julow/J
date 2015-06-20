@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 21:18:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 23:55:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 00:04:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void			key_up(t_j *j)
 		if (j->line.length > 0)
 		{
 			j_history(j, j->line);
-			if (j->flags & FLAG_DEBUG)
-				ft_printf("\r\nSave line in history\r\n");
 			j->hist_curr = j->history->prev;
 		}
 	}

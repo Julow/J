@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_k.c                                       :+:      :+:    :+:   */
+/*   key_ctrl_v.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 00:51:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:17:29 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/21 00:05:14 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/21 00:14:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "keys.h"
 
-void			key_ctrl_k(t_j *j)
+void			key_ctrl_v(t_j *j)
 {
-	j_deletion(j, ft_dstrsub(&(j->line),
-		-(j->line.length - j->cursor + 1), -1));
-	ft_dstrpop(&(j->line), j->line.length - j->cursor);
+	if (j->deletions == NULL)
+		return ;
+	ft_dstrset(&(j->line), j->cursor, j->cursor,
+		SUB(j->deletions->str, j->deletions->length));
+	j->cursor += j->deletions->length;
 }

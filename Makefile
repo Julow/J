@@ -47,6 +47,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_subchr.o \
 	o/srcs/ft_subindex.o \
 	o/srcs/handle_key.o \
+	o/srcs/j_deletion.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_history.o \
 	o/srcs/j_refresh.o \
@@ -62,7 +63,9 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_ctrl_e.o \
 	o/srcs/keys/key_ctrl_k.o \
 	o/srcs/keys/key_ctrl_l.o \
+	o/srcs/keys/key_ctrl_v.o \
 	o/srcs/keys/key_ctrl_x.o \
+	o/srcs/keys/key_ctrl_y.o \
 	o/srcs/keys/key_debug.o \
 	o/srcs/keys/key_delete.o \
 	o/srcs/keys/key_eof.o \
@@ -98,6 +101,10 @@ o/srcs/ft_subindex.o: srcs/ft_subindex.c include/j.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/handle_key.o: srcs/handle_key.c include/j.h include/keys.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_deletion.o: srcs/j_deletion.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -161,7 +168,15 @@ o/srcs/keys/key_ctrl_l.o: srcs/keys/key_ctrl_l.c include/j.h include/keys.h incl
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
+o/srcs/keys/key_ctrl_v.o: srcs/keys/key_ctrl_v.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
 o/srcs/keys/key_ctrl_x.o: srcs/keys/key_ctrl_x.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_ctrl_y.o: srcs/keys/key_ctrl_y.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
