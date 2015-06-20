@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/19 23:55:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 23:00:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void			key_nl(t_j *j, int key)
 {
+	if (j->line.length > 0)
+		j_history(j, j->line);
 	ft_dstradd_char(&(j->line), (char)key);
 	j_flush(j);
 }

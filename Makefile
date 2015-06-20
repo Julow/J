@@ -48,6 +48,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_subindex.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_flush.o \
+	o/srcs/j_history.o \
 	o/srcs/j_refresh.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
@@ -101,6 +102,10 @@ o/srcs/handle_key.o: srcs/handle_key.c include/j.h include/keys.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/j_flush.o: srcs/j_flush.c include/j.h include/keys.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_history.o: srcs/j_history.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

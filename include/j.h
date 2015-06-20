@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 22:41:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/20 23:56:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 **  c+left / c+right	Move cursor into line word by word
 **  c+A / home			Move to the start of the line
 **  c+E / end			Move to the end of the line
+**  up / right			Navigate in the history
 ** -
 ** Delete: (TODO: Deletion history)
 **  c+C					Clear line (if line is not empty)
@@ -85,14 +86,24 @@ typedef struct	s_caps
 	char			*te; // Exit TI mode
 }				t_caps;
 
+typedef struct	s_hist
+{
+	struct s_hist	*prev;
+	struct s_hist	*next;
+	char			*str;
+	int				length;
+}				t_hist;
+
 typedef struct	s_j
 {
-	t_term			term;
-	t_dstr			line;
 	char			**cmd;
+	int				master;
+	t_term			term;
 	t_caps			caps;
 	int				flags;
-	int				master;
+	t_dstr			line;
+	t_hist			*history;
+	t_hist			*hist_curr;
 	int				line_start;
 	int				cursor;
 }				t_j;
@@ -138,6 +149,8 @@ void			handle_key(t_j *j, t_ulong key);
 */
 t_val			j_word_motion(t_j *j);
 t_val			j_word(t_j *j);
+
+void			j_history(t_j *j, t_dstr str);
 
 /*
 ** utils
