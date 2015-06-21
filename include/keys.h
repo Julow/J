@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 22:09:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/22 01:13:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct	s_binding
 # define KEY_CTRL_V		22
 # define KEY_CTRL_Y		25
 # define KEY_CTRL_SPACE	0
+# define KEY_SHIFT_TAB	5921563
 
 # define KEY_ALL		((t_ulong)-1)
 
@@ -56,6 +57,7 @@ void			key_down(t_j *j);
 void			key_left(t_j *j);
 
 void			key_tab(t_j *j);
+void			key_shift_tab(t_j *j);
 void			key_restore_tab(t_j *j, t_ulong key);
 
 void			key_ctrl_left(t_j *j);

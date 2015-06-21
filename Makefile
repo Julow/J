@@ -30,7 +30,7 @@ C_CC := clang
 LD_CC := clang
 
 # C flags
-C_FLAGS := -Wall -Wextra -Werror -O2
+C_FLAGS := -Wall -Wextra -Werror -O2 -g
 
 # Linking flags
 LD_FLAGS := -L libft -l ft -l termcap

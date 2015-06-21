@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 22:32:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/22 01:17:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
-**  Globing
 **  Disable j
 **  Put deletion history into a tab completion
 */
@@ -44,7 +43,7 @@
 ** s = shift
 ** m = alt / option
 ** -----
-** Motion:
+** Cursor:
 **  left / right		Move cursor into line
 **  c+left / c+right	Move cursor into line word by word
 **  c+A / home			Move to the start of the line
@@ -68,6 +67,8 @@
 **  (TODO) s+c+right / s+c+left	Select by word
 ** -
 ** Other:
+**  tab					Auto complete
+**  shift+tab			Auto complete in reverse order
 **  m+!					Active debug print
 **  c+space				Disable J
 */

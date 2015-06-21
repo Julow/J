@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 22:05:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/22 01:14:24 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ const t_binding	g_bindings[] = {
 	{0x04,				&key_eof},
 	{'\r',				&key_nl},
 	{'\t',				&key_tab},
+	{KEY_SHIFT_TAB,		&key_shift_tab},
 	{KEY_UP,			&key_up},
 	{KEY_RIGHT,			&key_right},
 	{KEY_DOWN,			&key_down},
