@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:18:20 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 22:32:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 **  Config
 **  Globing
 **  Disable j
+**  Put deletion history into a tab completion
 */
 
 /*
@@ -95,17 +96,32 @@ typedef struct	s_hist
 
 typedef struct	s_j
 {
+/*
+** init + terminal
+*/
 	char			**cmd;
 	int				master;
 	t_term			term;
 	t_caps			caps;
+/*
+** line
+*/
 	int				flags;
 	t_dstr			line;
+	int				line_start;
+	int				cursor;
+/*
+** history
+*/
 	t_hist			*history;
 	t_hist			*hist_curr;
 	t_hist			*deletions;
-	int				line_start;
-	int				cursor;
+/*
+** tab completion
+*/
+	t_dstr			*tab_res;
+	int				tab_count;
+	int				tab_curr;
 }				t_j;
 
 typedef struct	s_val
@@ -153,6 +169,8 @@ t_val			j_word(t_j *j);
 void			j_history(t_j *j, t_dstr str);
 void			j_deletion(t_j *j, t_sub str);
 
+t_bool			j_glob(t_j *j);
+
 /*
 ** utils
 */
@@ -161,5 +179,7 @@ t_bool			ft_openpt(int *master, int *slave);
 
 int				ft_subindex(t_sub sub, char c);
 int				ft_subchr(t_sub sub, t_is mask);
+
+void			ft_freeall(void *data, int count, int size, void (*f)());
 
 #endif

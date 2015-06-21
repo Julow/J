@@ -43,12 +43,14 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
+	o/srcs/ft_freeall.o \
 	o/srcs/ft_openpt.o \
 	o/srcs/ft_subchr.o \
 	o/srcs/ft_subindex.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_deletion.o \
 	o/srcs/j_flush.o \
+	o/srcs/j_glob.o \
 	o/srcs/j_history.o \
 	o/srcs/j_refresh.o \
 	o/srcs/main.o \
@@ -70,7 +72,8 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_delete.o \
 	o/srcs/keys/key_eof.o \
 	o/srcs/keys/key_int.o \
-	o/srcs/keys/key_nl.o
+	o/srcs/keys/key_nl.o \
+	o/srcs/keys/key_tab.o
 
 MSG_0 := printf '\033[0;32m%-29.29s\033[0;0m\r'
 MSG_1 := printf '\033[0;31m%-29.29s\033[0;0m\n'
@@ -85,6 +88,10 @@ $(NAME): $(O_FILES)
 	@$(MSG_0) $@ ; $(LD_CC) -o $@ $(O_FILES) $(LD_FLAGS) && $(MSG_END) || $(MSG_1) $@
 
 o/srcs/argv.o: srcs/argv.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_freeall.o: srcs/ft_freeall.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -109,6 +116,10 @@ o/srcs/j_deletion.o: srcs/j_deletion.c include/j.h include/keys.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/j_flush.o: srcs/j_flush.c include/j.h include/keys.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_glob.o: srcs/j_glob.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -197,6 +208,10 @@ o/srcs/keys/key_int.o: srcs/keys/key_int.c include/j.h include/keys.h include/ms
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/keys/key_nl.o: srcs/keys/key_nl.c include/j.h include/keys.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_tab.o: srcs/keys/key_tab.c include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:09:11 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/21 22:05:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 #include "keys.h"
 
 const t_binding	g_bindings[] = {
+	{KEY_ALL,			&key_restore_tab},
 	{0x03,				&key_int},
 	{0x04,				&key_eof},
 	{'\r',				&key_nl},
+	{'\t',				&key_tab},
 	{KEY_UP,			&key_up},
 	{KEY_RIGHT,			&key_right},
 	{KEY_DOWN,			&key_down},
@@ -45,11 +47,12 @@ void			handle_key(t_j *j, t_ulong key)
 	int				i;
 
 	i = -1;
-	while (g_bindings[++i].key != '\0')
-		if (g_bindings[i].key == key)
+	while (g_bindings[++i].f != NULL)
+		if (g_bindings[i].key == key || g_bindings[i].key == KEY_ALL)
 		{
 			g_bindings[i].f(j, key);
-			return ;
+			if (g_bindings[i].key != KEY_ALL)
+				return ;
 		}
 	if (j->flags & FLAG_DEBUG && !ft_isalnum(key))
 		ft_fdprintf(2, "\r\nUnhandled key: %lld\r\n", key);
