@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/22 01:17:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/22 23:42:03 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
 # define MASTER_BUFF	512
+
+# define FT_SYS_BUFF	512
+# define PIPE_READ		0
+# define PIPE_WRITE		1
 
 # define MAX_ESCAPE_LEN	8
 
@@ -172,6 +176,8 @@ void			j_deletion(t_j *j, t_sub str);
 
 t_bool			j_glob(t_j *j);
 
+void			j_completion(t_j *j, int order);
+
 /*
 ** utils
 */
@@ -182,5 +188,7 @@ int				ft_subindex(t_sub sub, char c);
 int				ft_subchr(t_sub sub, t_is mask);
 
 void			ft_freeall(void *data, int count, int size, void (*f)());
+
+t_dstr			ft_system(char **cmd);
 
 #endif

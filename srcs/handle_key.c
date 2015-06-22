@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/22 01:14:24 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/23 00:11:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void			handle_key(t_j *j, t_ulong key)
 			if (g_bindings[i].key != KEY_ALL)
 				return ;
 		}
-	if (j->flags & FLAG_DEBUG && !ft_isalnum(key))
-		ft_fdprintf(2, "\r\nUnhandled key: %lld\r\n", key);
-	if (!ft_isascii(key))
+	if (!ft_isascii(key) || !IS(key, IS_PRINT))
+	{
+		if (j->flags & FLAG_DEBUG && !ft_isalnum(key))
+			ft_fdprintf(2, "\r\nUnhandled key: %lld\r\n", key);
 		return ;
+	}
 	i = ft_strlen((char*)&key);
 	ft_dstrset(&(j->line), j->cursor, j->cursor, SUB((char*)&key, i));
 	j->cursor += i;

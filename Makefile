@@ -47,7 +47,9 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_openpt.o \
 	o/srcs/ft_subchr.o \
 	o/srcs/ft_subindex.o \
+	o/srcs/ft_system.o \
 	o/srcs/handle_key.o \
+	o/srcs/j_completion.o \
 	o/srcs/j_deletion.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_glob.o \
@@ -107,7 +109,15 @@ o/srcs/ft_subindex.o: srcs/ft_subindex.c include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
+o/srcs/ft_system.o: srcs/ft_system.c include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
 o/srcs/handle_key.o: srcs/handle_key.c include/j.h include/keys.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_completion.o: srcs/j_completion.c include/j.h include/keys.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
