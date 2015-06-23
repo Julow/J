@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/22 23:09:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/23 23:55:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct	s_binding
 # define KEY_HOME		4738843
 # define KEY_PAGEUP		2117425947
 # define KEY_PAGEDOWN	2117491483
+
+void			key_refresh(t_j *j);
 
 void			key_nl(t_j *j, int key);
 void			key_eof(t_j *j, int key);

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_nl.c                                           :+:      :+:    :+:   */
+/*   ft_proc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/16 20:10:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 21:53:38 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/23 21:14:11 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/23 21:26:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#ifndef FT_PROC_H
+# define FT_PROC_H
 
-void			key_nl(t_j *j, int key)
-{
-	if (j->line.length > 0)
-		j_history(j, j->line);
-	ft_dstradd_char(&(j->line), (char)key);
-	j_flush(j);
-	j->flags |= FLAG_RETURN;
-}
+# include <sys/types.h>
+
+/*
+** ft_pidpath
+** ----
+** Get the current directory of an other process
+** ----
+** Return an alloced string containing the absolute path
+** Return NULL on error
+*/
+char			*ft_pidpath(pid_t pid);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:06:10 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 21:11:40 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/23 23:56:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 t_bool			start_slave(t_j *j)
 {
-	pid_t			pid;
 	struct winsize	win;
 	int				slave;
 
@@ -24,9 +23,9 @@ t_bool			start_slave(t_j *j)
 		return (false);
 	if (ioctl(0, TIOCGWINSZ, &win) < 0)
 		return (false);
-	if ((pid = fork()) < 0)
+	if ((j->slave_pid = fork()) < 0)
 		return (false);
-	if (pid == 0)
+	if (j->slave_pid == 0)
 	{
 		dup2(slave, 0);
 		dup2(slave, 1);

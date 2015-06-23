@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 00:11:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/23 21:56:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 const t_binding	g_bindings[] = {
 	{KEY_ALL,			&key_restore_tab},
+	{KEY_ALL,			&key_refresh},
 	{0x03,				&key_int},
 	{0x04,				&key_eof},
 	{'\r',				&key_nl},
