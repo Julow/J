@@ -6,22 +6,17 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 22:36:30 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 01:08:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 #include "msg.h"
 
-#define CAP(c,d)	if ((j->caps.c = tgetstr(#c, NULL)) == NULL) j->caps.c = d;
-
 static t_bool	init_caps(t_j *j)
 {
-	CAP(ch, NULL);
-	CAP(ce, NULL);
-	CAP(ti, "\033[?1049h");
-	CAP(te, "\033[?1049l");
-	if (j->caps.ch == NULL || j->caps.ce == NULL)
+	if ((j->caps.ch = tgetstr("ch", NULL)) == NULL
+		|| (j->caps.ce = tgetstr("ce", NULL)) == NULL)
 		return (false);
 	return (true);
 }

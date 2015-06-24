@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/24 23:55:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 01:10:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@
 /*
 ** ========================================================================== **
 ** J
-** ----
-** TODO:
-**  Selection with keyboard
-**  Fullscreen mode
-**  History search
-**  Keep last output for search
-**  Save last output for later
-**  Write an output in stdin
-**  Pipe an output to a system command
-**  Use of ft_regex
-**  Config
-**  Disable j
-**  Put deletion history into a tab completion
 */
 
 /*
@@ -71,6 +58,22 @@
 **  shift+tab			Auto complete in reverse order
 **  m+!					Active debug print
 **  c+space				Disable J
+** ========================================================================== **
+*/
+
+/*
+** TODO:
+**  Selection with keyboard
+**  Fullscreen mode
+**  History search
+**  Keep last output for search
+**  Save last output for later
+**  Write an output in stdin
+**  Pipe an output to a system command
+**  Use of ft_regex
+**  Config
+**  Disable j
+**  Put deletion history into a tab completion
 */
 
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
@@ -87,8 +90,6 @@ typedef struct	s_caps
 {
 	char			*ch; // Move cursor x (Maybe unsupported)
 	char			*ce; // Clear from cursor to right
-	char			*ti; // Enter TI mode
-	char			*te; // Exit TI mode
 }				t_caps;
 
 typedef struct	s_hist
