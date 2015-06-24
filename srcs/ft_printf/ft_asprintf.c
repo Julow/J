@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_writechar.c                                     :+:      :+:    :+:   */
+/*   ft_asprintf.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:35:32 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/24 22:46:16 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/24 22:51:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
 #include "ft_dstr.h"
 
-void			ft_writechar(t_out *out, char c)
+int				ft_asprintf(t_dstr *dst, const char *format, ...)
 {
-	if (out->flags & OUT_DSTR)
-	{
-		ft_dstradd_char((t_dstr*)out->buff, c);
-		return ;
-	}
-	if (out->i >= out->length)
-		ft_flush(out);
-	out->buff[out->i++] = c;
+	t_printf		pf;
+	va_list			ap;
+	t_out			out;
+
+	va_start(ap, format);
+	out = DSTR_OUT(dst);
+	pf = (t_printf){&out, 0, &ap};
+	writef(&pf, format);
+	va_end(ap);
+	return (pf.printed);
 }

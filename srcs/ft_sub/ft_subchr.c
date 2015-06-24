@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flush.c                                         :+:      :+:    :+:   */
+/*   ft_subchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/24 22:31:58 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/18 00:47:48 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 00:05:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-int				ft_flush(t_out *out)
+int				ft_subchr(t_sub sub, t_is mask)
 {
-	int				tmp;
+	int				i;
 
-	if (out->i <= 0 || out->flags & OUT_DSTR)
-		return (0);
-	if (out->flags & OUT_NOFLUSH)
-		tmp = out->i;
-	else
-		tmp = write(out->fd, out->buff, out->i);
-	out->i = 0;
-	return (tmp);
+	i = -1;
+	while (++i < sub.length)
+		if (IS(sub.str[i], mask))
+			return (i);
+	return (-1);
 }

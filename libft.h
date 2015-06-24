@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 11:52:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/11 01:36:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 00:05:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -369,6 +369,9 @@ t_bool			ft_subnext(t_sub *sub, t_is mask);
 t_bool			ft_subnextc(t_sub *sub, char c);
 int				ft_subcount(t_sub sub, t_is mask);
 int				ft_subextract(t_sub sub, t_sub *dst, int max, t_is mask);
+
+int				ft_subindex(t_sub sub, char c);
+int				ft_subchr(t_sub sub, t_is mask);
 
 /*
 ** ========================================================================== **
@@ -745,9 +748,19 @@ t_bool			ft_parsewhite(t_buff *buff);
 /*
 ** ========================================================================== **
 ** Use the struct s_out (t_out) to write to a fd
+** ----
+** Constructors:
+**  OUT (fd, buff, buff_size)	Create a file out
+**  DSTR_OUT (dstr)				Create a dynamic string (ft_dstr) out
+**  BUFF_OUT (buff, buff_size)	Create a static (circular) buffer out
 */
 
-# define OUT(f,b,l)		((t_out){(b), 0, (l), (f)})
+# define OUT_NOFLUSH	(1 << 1)
+# define OUT_DSTR		(1 << 2)
+
+# define OUT(f,b,l)		((t_out){(b), 0, (l), (f), 0})
+# define DSTR_OUT(d)	((t_out){(char*)(d), 0, 0, -1, OUT_DSTR})
+# define BUFF_OUT(b,l)	((t_out){(b), 0, (l), -1, OUT_NOFLUSH})
 
 typedef struct	s_out
 {
@@ -755,6 +768,7 @@ typedef struct	s_out
 	int				i;
 	int				length;
 	int				fd;
+	int				flags;
 }				t_out;
 
 void			ft_write(t_out *out, const char *data, t_uint len);
@@ -948,6 +962,8 @@ int				get_next_line(int const fd, t_sub *line);
 
 int				ft_printf(const char *format, ...);
 int				ft_fdprintf(const int fd, const char *format, ...);
+int				ft_sprintf(char *dst, char const *format, ...);
+int				ft_snprintf(char *dst, int max_len, char const *format, ...);
 int				ft_writef(t_out *out, const char *format, ...);
 
 /*
