@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/23 21:14:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 21:26:41 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 23:55:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define FT_PROC_H
 
 # include <sys/types.h>
+
+# ifdef __APPLE__
+#  include "libproc.h"
+#  define PROC_PATH_LEN		PROC_PIDPATHINFO_MAXSIZE
+# else
+#  define PROC_PATH_LEN		256
+# endif
 
 /*
 ** ft_pidpath
@@ -23,6 +30,6 @@
 ** Return an alloced string containing the absolute path
 ** Return NULL on error
 */
-char			*ft_pidpath(pid_t pid);
+int				ft_pidpath(pid_t pid, char *buff, int buff_size);
 
 #endif

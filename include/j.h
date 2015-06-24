@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 23:57:07 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 23:55:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ typedef struct	s_j
 	int				slave_pid;
 	t_term			term;
 	t_caps			caps;
-	char			*cwd;
 /*
 ** line
 */

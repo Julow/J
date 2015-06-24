@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/23 21:09:51 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 21:46:21 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/24 23:55:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,43 +15,26 @@
 
 #ifdef __APPLE__
 
-# include "libproc.h"
-
-char			*ft_pidpath(pid_t pid)
+int				ft_pidpath(pid_t pid, char *buff, int buff_size)
 {
-	char			buff[PROC_PIDPATHINFO_MAXSIZE];
-	int				len;
-	char			*tmp;
-
-	if ((len = proc_pidpath(pid, buff, PROC_PIDPATHINFO_MAXSIZE)) <= 0)
-		return (NULL);
-	tmp = MAL(char, len + 1);
-	ft_memcpy(tmp, buff, len);
-	tmp[len] = '\0';
-	return (tmp);
+	return (proc_pidpath(pid, buff, buff_size));
 }
 
 #else
 
 # include <unistd.h>
 
-# define LINK_BUFF		256
-# define LINK_NAME_LEN	64
-
-char			*ft_pidpath(pid_t pid)
+int				ft_pidpath(pid_t pid, char *buff, int buff_size)
 {
-	char			link_name[LINK_NAME_LEN];
-	char			buff[LINK_BUFF];
 	int				len;
+	char			link_name[64];
 
-	len = 6;
-	ft_memcpy(link_name, "/proc/", len);
-	len += ft_itoab(pid, link_name + len);
-	ft_memcpy(link_name + len, "/cwd", 4);
-	link_name[len + 4] = '\0';
-	if ((len = readlink(link_name, buff, LINK_BUFF)) < 0)
-		return (NULL);
-	return (ft_memdup(buff, len));
+	buff_size--;
+	ft_sprintf(link_name, "/proc/%d/cwd", pid);
+	if ((len = readlink(link_name, buff, buff_size)) <= 0)
+		return ((buff[0] = '\0'), len);
+	buff[len] = '\0';
+	return (len);
 }
 
 #endif
