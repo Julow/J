@@ -46,7 +46,6 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_freeall.o \
 	o/srcs/ft_openpt.o \
 	o/srcs/ft_pidpath.o \
-	o/srcs/ft_subchr.o \
 	o/srcs/handle_key.o \
 	o/srcs/j_completion.o \
 	o/srcs/j_deletion.o \
@@ -76,7 +75,6 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_nl.o \
 	o/srcs/keys/key_refresh.o \
 	o/srcs/keys/key_tab.o \
-	o/srcs/unused/ft_subindex.o \
 	o/srcs/unused/ft_system.o
 
 MSG_0 := printf '\033[0;32m%-29.29s\033[0;0m\r'
@@ -104,10 +102,6 @@ o/srcs/ft_openpt.o: srcs/ft_openpt.c include/j.h
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_pidpath.o: srcs/ft_pidpath.c include/ft_proc.h include/j.h
-	@mkdir -p o/srcs 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
-o/srcs/ft_subchr.o: srcs/ft_subchr.c include/ft_proc.h include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -225,10 +219,6 @@ o/srcs/keys/key_refresh.o: srcs/keys/key_refresh.c include/ft_proc.h include/j.h
 
 o/srcs/keys/key_tab.o: srcs/keys/key_tab.c include/ft_proc.h include/j.h include/keys.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
-o/srcs/unused/ft_subindex.o: srcs/unused/ft_subindex.c include/ft_proc.h include/j.h include/keys.h include/msg.h
-	@mkdir -p o/srcs/unused 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/unused/ft_system.o: srcs/unused/ft_system.c include/ft_proc.h include/j.h include/keys.h include/msg.h
