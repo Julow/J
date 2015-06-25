@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/19 23:47:21 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:17:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 22:53:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void			key_ctrl_left(t_prompt *p)
 {
-	p->cursor = prompt_word_motion(p).from;
+	p->cursor = prompt_word(p).from;
 }
 
 void			key_ctrl_right(t_prompt *p)
 {
-	p->cursor = prompt_word_motion(p).to;
+	p->cursor = prompt_word(p).to;
 }

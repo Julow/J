@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:41:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/26 00:17:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int				main(int argc, char **argv)
 	init_j(&j);
 	if (!parse_argv(&j, argc, argv))
 		return (2);
-	ft_trestore(&(j.term), true);
 	if (!start_slave(&j))
-		return (ft_trestore(&(j.term), false), ft_fdprintf(2, E_SLAVE), 1);
+		return (ft_fdprintf(2, E_SLAVE), 1);
+	ft_trestore(&(j.term), true);
 	start_master(&j);
 	ft_trestore(&(j.term), false);
 	return (0);

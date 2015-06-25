@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/23 21:14:11 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/24 23:55:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/26 00:33:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 ** ----
 ** Get the current directory of an other process
 ** ----
-** Return an alloced string containing the absolute path
-** Return NULL on error
+** Better use PROC_PATH_LEN as buff_size
+** The path is 0 terminated
+** ----
+** Return the len of the path
 */
 int				ft_pidpath(pid_t pid, char *buff, int buff_size);
 

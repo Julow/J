@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:46:50 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/26 00:34:35 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
-**  Disable j
 **  Put deletion history into a tab completion
 */
 
@@ -42,7 +41,6 @@
 
 # define MASTER_BUFF	512
 
-# define FT_SYS_BUFF	512
 # define PIPE_READ		0
 # define PIPE_WRITE		1
 
@@ -67,7 +65,6 @@ typedef struct	s_j
 }				t_j;
 
 # define FLAG_TI		(1 << 1)
-# define FLAG_DEBUG		(1 << 2)
 # define FLAG_RETURN	(1 << 3)
 
 # define J_HIDE			(1 << 1)

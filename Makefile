@@ -47,7 +47,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_pidpath.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_key.o \
-	o/srcs/j_refresh.o \
+	o/srcs/j_set.o \
 	o/srcs/main.o \
 	o/srcs/master.o \
 	o/srcs/scan_output.o \
@@ -76,8 +76,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_prompt/keys/key_nl.o \
 	o/srcs/ft_prompt/keys/key_tab.o \
 	o/srcs/keys/key_ctrl_l.o \
-	o/srcs/keys/key_refresh.o \
-	o/srcs/unused/ft_system.o
+	o/srcs/keys/key_refresh.o
 
 MSG_0 := printf '\033[0;32m%-39.39s\033[0;0m\r'
 MSG_1 := printf '\033[0;31m%-39.39s\033[0;0m\n'
@@ -111,7 +110,7 @@ o/srcs/j_key.o: srcs/j_key.c include/ft_proc.h include/ft_prompt.h include/ft_pr
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/j_refresh.o: srcs/j_refresh.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
+o/srcs/j_set.o: srcs/j_set.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -231,17 +230,13 @@ o/srcs/keys/key_refresh.o: srcs/keys/key_refresh.c include/ft_proc.h include/ft_
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/unused/ft_system.o: srcs/unused/ft_system.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
-	@mkdir -p o/srcs/unused 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
 $(LIBS):
 	@make -C $@
 .PHONY: $(LIBS)
 
 clean:
 	@rm -f $(O_FILES) 2> /dev/null || true
-	@rmdir -p o/srcs/unused o/srcs/keys o/srcs/ft_prompt/keys o/srcs/ft_prompt o/srcs $(O_DIR) 2> /dev/null || true
+	@rmdir -p o/srcs/keys o/srcs/ft_prompt/keys o/srcs/ft_prompt o/srcs $(O_DIR) 2> /dev/null || true
 .PHONY: clean
 
 fclean: clean
