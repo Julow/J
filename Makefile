@@ -56,10 +56,10 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_prompt/deletion.o \
 	o/srcs/ft_prompt/flush.o \
 	o/srcs/ft_prompt/ft_freeall.o \
+	o/srcs/ft_prompt/ft_promptinit.o \
+	o/srcs/ft_prompt/ft_promptkey.o \
 	o/srcs/ft_prompt/glob.o \
 	o/srcs/ft_prompt/history.o \
-	o/srcs/ft_prompt/init.o \
-	o/srcs/ft_prompt/keys.o \
 	o/srcs/ft_prompt/motions.o \
 	o/srcs/ft_prompt/keys/key_arrows.o \
 	o/srcs/ft_prompt/keys/key_ctrl_a.o \
@@ -147,19 +147,19 @@ o/srcs/ft_prompt/ft_freeall.o: srcs/ft_prompt/ft_freeall.c include/ft_proc.h inc
 	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
+o/srcs/ft_prompt/ft_promptinit.o: srcs/ft_prompt/ft_promptinit.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_prompt/ft_promptkey.o: srcs/ft_prompt/ft_promptkey.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
 o/srcs/ft_prompt/glob.o: srcs/ft_prompt/glob.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_prompt/history.o: srcs/ft_prompt/history.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
-	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
-o/srcs/ft_prompt/init.o: srcs/ft_prompt/init.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
-	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
-o/srcs/ft_prompt/keys.o: srcs/ft_prompt/keys.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
