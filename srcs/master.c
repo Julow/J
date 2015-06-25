@@ -6,12 +6,12 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 22:42:55 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 22:32:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
-#include "keys.h"
+#include "ft_prompt_keys.h"
 #include <unistd.h>
 #include <sys/select.h>
 
@@ -27,7 +27,7 @@ static t_bool	read_stdin(t_j *j)
 		j->flags ^= FLAG_TI;
 	if (j->flags & FLAG_TI)
 		return (write(j->master, &key, len), true);
-	handle_key(j, key);
+	j_key(j, key);
 	j_set(j, J_REFRESH);
 	return (true);
 }

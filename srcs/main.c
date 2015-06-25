@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 01:08:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 22:41:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static t_bool	init_caps(t_j *j)
 
 static void		init_j(t_j *j)
 {
-	j->line = DSTR0();
-	j->history = MAL1(t_hist);
-	*(j->history) = (t_hist){NULL, NULL, "", 0};
-	j->hist_curr = NULL;
+	ft_promptinit(&(j->prompt), (t_prompt_events){
+		.on_return = &j_flush,
+		.data = j
+	});
 	ft_tmakeraw(&(j->term));
 }
 

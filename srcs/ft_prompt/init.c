@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_x.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 00:51:50 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:13:11 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/25 22:24:28 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:40:05 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt.h"
 
-void			key_ctrl_x(t_j *j)
+void			ft_promptinit(t_prompt *p, t_prompt_events events)
 {
-	t_val			val;
-
-	val = j_word(j);
-	if (val.from < val.to)
-	{
-		j_deletion(j, ft_dstrsub(&(j->line), val.from, val.to));
-		ft_dstrset(&(j->line), val.from, val.to, SUBC(""));
-	}
-	j->cursor = val.from;
+	ft_bzero(p, sizeof(t_prompt));
+	p->events = events;
+	p->line = DSTR0();
+	p->history = MAL1(t_hist);
+	*(p->history) = (t_hist){NULL, NULL, "", 0};
+	p->hist_curr = NULL;
 }

@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_nl.c                                           :+:      :+:    :+:   */
+/*   history.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/16 20:10:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 21:53:38 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/20 22:49:15 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:20:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt.h"
 
-void			key_nl(t_j *j, int key)
+void			prompt_history(t_prompt *p, t_dstr str)
 {
-	if (j->line.length > 0)
-		j_history(j, j->line);
-	ft_dstradd_char(&(j->line), (char)key);
-	j_flush(j);
-	j->flags |= FLAG_RETURN;
+	t_hist			*hist;
+
+	hist = ft_emalloc(str.length + 1 + sizeof(t_hist));
+	*hist = (t_hist){
+		p->history,
+		NULL,
+		((void*)hist) + sizeof(t_hist),
+		str.length
+	};
+	ft_memcpy(hist->str, str.str, str.length + 1);
+	p->history->next = hist;
+	p->history = hist;
+	p->hist_curr = NULL;
 }

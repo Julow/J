@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_arrows.c                                  :+:      :+:    :+:   */
+/*   key_ctrl_k.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/19 23:47:21 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 01:00:28 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/20 00:51:50 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:17:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt_keys.h"
 
-void			key_ctrl_left(t_j *j)
+void			key_ctrl_k(t_prompt *p)
 {
-	j->cursor = j_word_motion(j).from;
-}
-
-void			key_ctrl_right(t_j *j)
-{
-	j->cursor = j_word_motion(j).to;
+	prompt_deletion(p, ft_dstrsub(&(p->line),
+		-(p->line.length - p->cursor + 1), -1));
+	ft_dstrpop(&(p->line), p->line.length - p->cursor);
 }

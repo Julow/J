@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_glob.c                                           :+:      :+:    :+:   */
+/*   glob.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 22:24:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/22 01:09:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 22:20:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
+#include "ft_prompt.h"
 #include <stdlib.h>
 #include <dirent.h>
 
-static t_bool	get_path(t_j *j, t_dstr *dst, t_sub *file)
+static t_bool	get_path(t_prompt *p, t_dstr *dst, t_sub *file)
 {
 	t_val			word;
 	char			*tmp;
 	int				i;
 
-	word = VAL(j->cursor - 1, j->cursor);
-	while (word.from >= 0 && IS(j->line.str[word.from], ~IS_SPACE))
+	word = VAL(p->cursor - 1, p->cursor);
+	while (word.from >= 0 && IS(p->line.str[word.from], ~IS_SPACE))
 		word.from--;
 	word.from++;
 	if ((word.to - word.from) <= 0 || word.from < 0)
 		return (false);
-	if (j->line.str[word.from] == '~' && j->line.str[word.from + 1] == '/'
+	if (p->line.str[word.from] == '~' && p->line.str[word.from + 1] == '/'
 		&& (tmp = ft_getenv("HOME", NULL)) != NULL)
 	{
 		ft_dstradd(dst, tmp, -1);
 		word.from++;
 	}
 	i = word.to - 1;
-	while (i >= word.from && j->line.str[i] != '/')
+	while (i >= word.from && p->line.str[i] != '/')
 		--i;
 	i++;
 	if (i > word.from)
-		ft_dstradd(dst, j->line.str + word.from, i - word.from);
-	*file = SUB(j->line.str + i, word.to - i);
+		ft_dstradd(dst, p->line.str + word.from, i - word.from);
+	*file = SUB(p->line.str + i, word.to - i);
 	return (true);
 }
 
@@ -65,14 +65,14 @@ static void		ft_glob(t_dstr path, t_sub file, t_tab *dst)
 	closedir(dir);
 }
 
-t_bool			j_glob(t_j *j)
+t_bool			prompt_glob(t_prompt *p)
 {
 	t_dstr			path;
 	t_sub			file;
 	t_tab			res;
 
 	path = DSTR0();
-	if (!get_path(j, &path, &file))
+	if (!get_path(p, &path, &file))
 		return (false);
 	ft_tabini(&res, sizeof(t_dstr));
 	ft_glob(path, file, &res);
@@ -84,8 +84,8 @@ t_bool			j_glob(t_j *j)
 	if (file.length > 0) // TODO: Fix this
 		ft_dstradd(&path, file.str, file.length);
 	ft_tabadd(&res, &path);
-	j->tab_res = (t_dstr*)res.data;
-	j->tab_count = res.length;
-	j->tab_curr = res.length - 1;
+	p->tab_res = (t_dstr*)res.data;
+	p->tab_count = res.length;
+	p->tab_curr = res.length - 1;
 	return (true);
 }

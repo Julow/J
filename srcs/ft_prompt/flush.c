@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_v.c                                       :+:      :+:    :+:   */
+/*   flush.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/21 00:05:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:14:09 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/16 20:14:15 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:40:41 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt.h"
 
-void			key_ctrl_v(t_j *j)
+void			prompt_flush(t_prompt *p)
 {
-	if (j->deletions == NULL)
-		return ;
-	ft_dstrset(&(j->line), j->cursor, j->cursor,
-		SUB(j->deletions->str, j->deletions->length));
-	j->cursor += j->deletions->length;
+	if (p->events.on_return != NULL)
+		p->events.on_return(p->events.data);
+	ft_dstrpop(&(p->line), -1);
+	p->cursor = 0;
 }

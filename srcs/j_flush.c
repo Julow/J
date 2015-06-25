@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/16 20:14:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/16 22:58:09 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/25 22:35:30 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:40:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,5 @@
 
 void			j_flush(t_j *j)
 {
-	write(j->master, j->line.str, j->line.length);
-	ft_dstrpop(&(j->line), -1);
-	j->cursor = 0;
+	write(j->master, j->prompt.line.str, j->prompt.line.length);
 }

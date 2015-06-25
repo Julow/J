@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_a.c                                       :+:      :+:    :+:   */
+/*   j_key.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/17 00:24:43 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/19 23:49:53 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:47:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
+#include "ft_prompt_keys.h"
 
-void			key_ctrl_a(t_j *j)
+const t_binding	g_bindings[] = {
+	{KEY_ALL,			&key_refresh},
+	{KEY_CTRL_L,		&key_ctrl_l},
+	{'\0',				NULL}
+};
+
+void			j_key(t_j *j, t_ulong key)
 {
-	j->cursor = 0;
+	int				i;
+
+	i = -1;
+	while (g_bindings[++i].f != NULL)
+		if (g_bindings[i].key == key || g_bindings[i].key == KEY_ALL)
+		{
+			g_bindings[i].f(j, key);
+			if (g_bindings[i].key != KEY_ALL)
+				return ;
+		}
+	ft_promptkey(&(j->prompt), key);
 }

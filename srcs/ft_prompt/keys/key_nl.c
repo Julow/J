@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_refresh.c                                      :+:      :+:    :+:   */
+/*   key_nl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/23 21:54:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:46:02 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/16 20:10:22 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:44:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
-#include "ft_proc.h"
-#include <unistd.h>
+#include "ft_prompt_keys.h"
 
-void			key_refresh(t_j *j)
+void			key_nl(t_prompt *p, int key)
 {
-	char			cwd[PROC_PATH_LEN];
-
-	if (!(j->flags & FLAG_RETURN))
-		return ;
-	if (ft_pidpath(j->slave_pid, cwd, PROC_PATH_LEN) <= 0)
-		return ;
-	chdir(cwd);
+	if (p->line.length > 0)
+		prompt_history(p, p->line);
+	ft_dstradd_char(&(p->line), (char)key);
+	prompt_flush(p);
 }

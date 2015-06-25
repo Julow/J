@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_ctrl_delete.c                                  :+:      :+:    :+:   */
+/*   deletion.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 00:11:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/20 01:00:24 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/20 23:59:52 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:21:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt.h"
 
-void			key_ctrl_delete(t_j *j)
+void			prompt_deletion(t_prompt *p, t_sub str)
 {
-	t_val			val;
+	t_hist			*hist;
 
-	val	= j_word_motion(j);
-	if (val.to > j->cursor)
-		ft_dstrset(&(j->line), j->cursor, val.to, SUBC(""));
-}
-
-void			key_ctrl_backspace(t_j *j)
-{
-	t_val			val;
-
-	val	= j_word_motion(j);
-	if (val.from < j->cursor)
-		ft_dstrset(&(j->line), val.from, j->cursor, SUBC(""));
-	j->cursor = val.from;
+	hist = ft_emalloc(str.length + 1 + sizeof(t_hist));
+	*hist = (t_hist){
+		p->deletions,
+		NULL,
+		((void*)hist) + sizeof(t_hist),
+		str.length
+	};
+	ft_memcpy(hist->str, str.str, str.length + 1);
+	p->deletions = hist;
 }

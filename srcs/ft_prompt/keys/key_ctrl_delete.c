@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_history.c                                        :+:      :+:    :+:   */
+/*   key_ctrl_delete.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 22:49:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/21 00:10:37 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/20 00:11:15 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:17:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
+#include "ft_prompt_keys.h"
 
-void			j_history(t_j *j, t_dstr str)
+void			key_ctrl_delete(t_prompt *p)
 {
-	t_hist			*hist;
+	t_val			val;
 
-	hist = ft_emalloc(str.length + 1 + sizeof(t_hist));
-	*hist = (t_hist){
-		j->history,
-		NULL,
-		((void*)hist) + sizeof(t_hist),
-		str.length
-	};
-	ft_memcpy(hist->str, str.str, str.length + 1);
-	j->history->next = hist;
-	j->history = hist;
-	j->hist_curr = NULL;
+	val	= prompt_word_motion(p);
+	if (val.to > p->cursor)
+		ft_dstrset(&(p->line), p->cursor, val.to, SUBC(""));
+}
+
+void			key_ctrl_backspace(t_prompt *p)
+{
+	t_val			val;
+
+	val	= prompt_word_motion(p);
+	if (val.from < p->cursor)
+		ft_dstrset(&(p->line), val.from, p->cursor, SUBC(""));
+	p->cursor = val.from;
 }

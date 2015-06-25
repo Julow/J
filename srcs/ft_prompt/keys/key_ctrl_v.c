@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_refresh.c                                      :+:      :+:    :+:   */
+/*   key_ctrl_v.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/23 21:54:41 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:46:02 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/21 00:05:14 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:17:59 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
-#include "ft_proc.h"
-#include <unistd.h>
+#include "ft_prompt_keys.h"
 
-void			key_refresh(t_j *j)
+void			key_ctrl_v(t_prompt *p)
 {
-	char			cwd[PROC_PATH_LEN];
-
-	if (!(j->flags & FLAG_RETURN))
+	if (p->deletions == NULL)
 		return ;
-	if (ft_pidpath(j->slave_pid, cwd, PROC_PATH_LEN) <= 0)
-		return ;
-	chdir(cwd);
+	ft_dstrset(&(p->line), p->cursor, p->cursor,
+		SUB(p->deletions->str, p->deletions->length));
+	p->cursor += p->deletions->length;
 }

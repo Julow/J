@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_completion.c                                     :+:      :+:    :+:   */
+/*   completion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/22 23:03:37 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/22 23:04:12 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/25 22:21:21 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
+#include "ft_prompt.h"
 
-void			j_completion(t_j *j, int order)
+void			prompt_completion(t_prompt *p, int order)
 {
-	if (j->tab_res == NULL && !j_glob(j))
+	if (p->tab_res == NULL && !prompt_glob(p))
 		return ;
-	j->cursor -= j->tab_res[j->tab_curr].length;
-	ft_dstrset(&(j->line), j->cursor,
-		j->cursor + j->tab_res[j->tab_curr].length, SUBC(""));
-	j->tab_curr += order;
-	if (j->tab_curr < 0)
-		j->tab_curr = j->tab_count - 1;
-	if (j->tab_curr >= j->tab_count)
-		j->tab_curr = 0;
-	ft_dstrset(&(j->line), j->cursor, j->cursor,
-		ft_dstrsub(j->tab_res + j->tab_curr, 0, -1));
-	j->cursor += j->tab_res[j->tab_curr].length;
+	p->cursor -= p->tab_res[p->tab_curr].length;
+	ft_dstrset(&(p->line), p->cursor,
+		p->cursor + p->tab_res[p->tab_curr].length, SUBC(""));
+	p->tab_curr += order;
+	if (p->tab_curr < 0)
+		p->tab_curr = p->tab_count - 1;
+	if (p->tab_curr >= p->tab_count)
+		p->tab_curr = 0;
+	ft_dstrset(&(p->line), p->cursor, p->cursor,
+		ft_dstrsub(p->tab_res + p->tab_curr, 0, -1));
+	p->cursor += p->tab_res[p->tab_curr].length;
 }

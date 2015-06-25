@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_debug.c                                        :+:      :+:    :+:   */
+/*   key_ctrl_a.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/20 22:33:16 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/23 00:03:44 by juloo            ###   ########.fr       */
+/*   Created: 2015/06/17 00:24:43 by juloo             #+#    #+#             */
+/*   Updated: 2015/06/25 22:16:18 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "ft_prompt_keys.h"
 
-void			key_debug(t_j *j)
+void			key_ctrl_a(t_prompt *p)
 {
-	if (j->flags & FLAG_DEBUG)
-		j->flags &= ~FLAG_DEBUG;
-	else
-		j->flags |= FLAG_DEBUG;
+	p->cursor = 0;
 }
