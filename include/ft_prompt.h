@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:53:21 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/27 23:47:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,6 @@
 
 # include "libft.h"
 # include "ft_dstr.h"
-
-/*
-** ========================================================================== **
-** Bindings
-** -----
-** c = ctrl
-** s = shift
-** m = alt / option
-** -----
-** Cursor:
-**  left / right		Move cursor into line
-**  c+left / c+right	Move cursor into line word by word
-**  c+A / home			Move to the start of the line
-**  c+E / end			Move to the end of the line
-**  up / right			Navigate in the history
-** -
-** Delete:
-**  c+C					Clear line (if line is not empty)
-**  delete				Delete
-**  c+H					Backspace by word
-**  c+delete			Delete by word
-**  c+K					Delete from the cursor to the end of line
-**  c+X					Delete current word
-** -
-** Paste:
-**  c+Y					Paste last delete
-**  c+V					Paste last delete but keep it in the history
-** -
-** (TODO) Selection:
-**  (TODO) s+right / s+left		Select
-**  (TODO) s+c+right / s+c+left	Select by word
-** -
-** Other:
-**  tab					Auto complete
-**  shift+tab			Auto complete in reverse order
-**  m+!					Active debug print
-**  c+space				Disable J
-** ========================================================================== **
-*/
 
 typedef struct	s_hist
 {

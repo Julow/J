@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/26 00:17:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/27 23:32:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 static t_bool	init_caps(t_j *j)
 {
 	if ((j->caps.ch = tgetstr("ch", NULL)) == NULL
-		|| (j->caps.ce = tgetstr("ce", NULL)) == NULL)
+		|| (j->caps.ce = tgetstr("ce", NULL)) == NULL
+		|| (j->caps.cm = tgetstr("cm", NULL)) == NULL
+		|| (j->caps.cl = tgetstr("cl", NULL)) == NULL
+		|| (j->caps.vi = tgetstr("vi", NULL)) == NULL
+		|| (j->caps.ve = tgetstr("ve", NULL)) == NULL
+		|| (j->caps.ti = tgetstr("ti", NULL)) == NULL
+		|| (j->caps.te = tgetstr("te", NULL)) == NULL)
 		return (false);
 	return (true);
 }

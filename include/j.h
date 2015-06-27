@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/26 00:34:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/27 23:48:53 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,48 @@
 /*
 ** ========================================================================== **
 ** J
+*/
+
+/*
+** ========================================================================== **
+** Bindings
+** -----
+** c = ctrl
+** s = shift
+** m = alt / option
+** -----
+** Cursor:
+**  left / right		Move cursor into line
+**  c+left / c+right	Move cursor into line word by word
+**  c+A / home			Move to the start of the line
+**  c+E / end			Move to the end of the line
+** -----
+** History:
+**  up / right			Navigate in the history
+**  c+R					History search
+** -
+** Delete:
+**  c+C					Clear line (if line is not empty)
+**  delete				Delete
+**  c+H					Backspace by word
+**  c+delete			Delete by word
+**  c+K					Delete from the cursor to the end of line
+**  c+X					Delete current word
+** -
+** Paste:
+**  c+Y					Paste last delete
+**  c+V					Paste last delete but keep it in the history
+** -
+** (TODO) Selection:
+**  (TODO) s+right / s+left		Select
+**  (TODO) s+c+right / s+c+left	Select by word
+** -
+** Other:
+**  tab					Auto complete
+**  shift+tab			Auto complete in reverse order
+**  m+!					Active debug print
+**  c+space				Disable J
+** ========================================================================== **
 */
 
 /*
@@ -50,6 +92,12 @@ typedef struct	s_caps
 {
 	char			*ch; // Move cursor x (Maybe unsupported)
 	char			*ce; // Clear from cursor to right
+	char			*cm; // Move cursor x y
+	char			*cl; // Clear screen
+	char			*vi; // VI mode (cursor hide)
+	char			*ve; // exit VI mode
+	char			*ti; // TI mode (tmp screen)
+	char			*te; // exit TI mode
 }				t_caps;
 
 typedef struct	s_j
@@ -62,6 +110,7 @@ typedef struct	s_j
 	int				flags;
 	int				line_start;
 	t_prompt		prompt;
+	t_prompt		search_prompt;
 }				t_j;
 
 # define FLAG_TI		(1 << 1)
@@ -81,27 +130,26 @@ t_bool			parse_argv(t_j *j, int argc, char **argv);
 */
 t_bool			start_slave(t_j *j);
 void			start_master(t_j *j);
-
-void			j_flush(t_j *j);
-
-void			j_key(t_j *j, t_ulong key);
+void			scan_output(t_j *j, t_sub output);
 
 void			j_set(t_j *j, int flags);
 
-void			scan_output(t_j *j, t_sub output);
+void			j_flush(t_j *j);
+void			j_key(t_j *j, t_ulong key);
+
+t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 
 /*
 ** keys
 */
 void			key_refresh(t_j *j);
 void			key_ctrl_l(t_j *j);
+void			key_ctrl_r(t_j *j);
 
 /*
 ** utils
 */
 void			ft_tmakeraw(t_term *term);
 t_bool			ft_openpt(int *master, int *slave);
-
-t_dstr			ft_system(char **cmd);
 
 #endif
