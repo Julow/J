@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/27 23:48:53 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/28 00:08:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@
 **  (TODO) s+c+right / s+c+left	Select by word
 ** -
 ** Other:
+**  c+F					Search and replace
 **  tab					Auto complete
 **  shift+tab			Auto complete in reverse order
-**  m+!					Active debug print
 **  c+space				Disable J
 ** ========================================================================== **
 */
@@ -69,7 +69,6 @@
 ** TODO:
 **  Selection with keyboard
 **  Fullscreen mode
-**  History search
 **  Keep last output for search
 **  Save last output for later
 **  Write an output in stdin
@@ -111,6 +110,7 @@ typedef struct	s_j
 	int				line_start;
 	t_prompt		prompt;
 	t_prompt		search_prompt;
+	t_prompt		ask_prompt;
 }				t_j;
 
 # define FLAG_TI		(1 << 1)
@@ -138,6 +138,7 @@ void			j_flush(t_j *j);
 void			j_key(t_j *j, t_ulong key);
 
 t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
+t_bool			j_ask(t_j *j, char const *q, t_sub *res);
 
 /*
 ** keys
@@ -145,11 +146,13 @@ t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 void			key_refresh(t_j *j);
 void			key_ctrl_l(t_j *j);
 void			key_ctrl_r(t_j *j);
+void			key_ctrl_f(t_j *j);
 
 /*
 ** utils
 */
-void			ft_tmakeraw(t_term *term);
 t_bool			ft_openpt(int *master, int *slave);
+
+void			ft_dstrreplace(t_dstr *str, t_sub search, t_sub replace);
 
 #endif

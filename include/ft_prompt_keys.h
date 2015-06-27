@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/27 00:36:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/28 00:08:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ typedef struct	s_binding
 */
 
 # define KEY_CTRL_A		1
-# define KEY_CTRL_E		5
 # define KEY_CTRL_C		3
 # define KEY_CTRL_D		4
-# define KEY_CTRL_L		12
-# define KEY_CTRL_R		18
+# define KEY_CTRL_E		5
+# define KEY_CTRL_F		6
 # define KEY_CTRL_H		8
 # define KEY_CTRL_K		11
-# define KEY_CTRL_X		24
+# define KEY_CTRL_L		12
+# define KEY_CTRL_R		18
 # define KEY_CTRL_V		22
+# define KEY_CTRL_X		24
 # define KEY_CTRL_Y		25
 # define KEY_CTRL_SPACE	0
 

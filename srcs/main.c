@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/27 23:32:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/28 00:35:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static void		init_j(t_j *j)
 {
 	ft_promptinit(&(j->prompt), (t_prompt_events){
 		.on_return = &j_flush,
+		.data = j
+	});
+	ft_promptinit(&(j->search_prompt), (t_prompt_events){
+		.data = j
+	});
+	ft_promptinit(&(j->ask_prompt), (t_prompt_events){
 		.data = j
 	});
 	ft_tmakeraw(&(j->term));
