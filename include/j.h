@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/28 00:08:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/28 00:44:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 **  c+H					Backspace by word
 **  c+delete			Delete by word
 **  c+K					Delete from the cursor to the end of line
+**  c+O					Delete from the begin of line to the cursor
 **  c+X					Delete current word
 ** -
 ** Paste:

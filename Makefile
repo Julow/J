@@ -70,6 +70,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_prompt/keys/key_ctrl_delete.o \
 	o/srcs/ft_prompt/keys/key_ctrl_e.o \
 	o/srcs/ft_prompt/keys/key_ctrl_k.o \
+	o/srcs/ft_prompt/keys/key_ctrl_o.o \
 	o/srcs/ft_prompt/keys/key_ctrl_v.o \
 	o/srcs/ft_prompt/keys/key_ctrl_x.o \
 	o/srcs/ft_prompt/keys/key_ctrl_y.o \
@@ -204,6 +205,10 @@ o/srcs/ft_prompt/keys/key_ctrl_e.o: srcs/ft_prompt/keys/key_ctrl_e.c include/ft_
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_prompt/keys/key_ctrl_k.o: srcs/ft_prompt/keys/key_ctrl_k.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/ft_prompt/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_prompt/keys/key_ctrl_o.o: srcs/ft_prompt/keys/key_ctrl_o.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft_prompt/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
