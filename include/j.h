@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/28 00:44:11 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/28 23:52:48 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,11 @@
 
 # define PN(s,n)		(ft_write(FTOUT, (s), (n)))
 
+# define HISTORY_FILE	".j_history"
+# define HISTORY_MAX	256
+
+# define BUFF_SIZE		512
+
 # define MASTER_BUFF	512
 
 # define PIPE_READ		0
@@ -140,6 +145,9 @@ void			j_key(t_j *j, t_ulong key);
 
 t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 t_bool			j_ask(t_j *j, char const *q, t_sub *res);
+
+void			j_history_save(t_hist *hist);
+void			j_history_load(t_hist **hist);
 
 /*
 ** keys

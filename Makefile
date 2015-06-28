@@ -48,6 +48,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_pidpath.o \
 	o/srcs/j_ask.o \
 	o/srcs/j_flush.o \
+	o/srcs/j_history.o \
 	o/srcs/j_key.o \
 	o/srcs/j_search.o \
 	o/srcs/j_set.o \
@@ -117,6 +118,10 @@ o/srcs/j_ask.o: srcs/j_ask.c include/ft_proc.h include/ft_prompt.h include/ft_pr
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/j_flush.o: srcs/j_flush.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_history.o: srcs/j_history.c include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
