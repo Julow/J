@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/28 23:52:48 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/29 12:18:44 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 ** -----
 ** Cursor:
 **  left / right		Move cursor into line
-**  c+left / c+right	Move cursor into line word by word
+**  c+left / c+right \
+**  m+left / m+right	Move cursor into line word by word
 **  c+A / home			Move to the start of the line
 **  c+E / end			Move to the end of the line
 ** -----
@@ -41,25 +42,21 @@
 **  up / right			Navigate in the history
 **  c+R					History search
 ** -
-** Delete:
-**  c+C					Clear line (if line is not empty)
-**  delete				Delete
-**  c+H					Backspace by word
-**  c+delete			Delete by word
+** Delete/Paste:
 **  c+K					Delete from the cursor to the end of line
 **  c+O					Delete from the begin of line to the cursor
 **  c+X					Delete current word
-** -
-** Paste:
 **  c+Y					Paste last delete
 **  c+V					Paste last delete but keep it in the history
 ** -
-** (TODO) Selection:
-**  (TODO) s+right / s+left		Select
-**  (TODO) s+c+right / s+c+left	Select by word
+** Edition:
+**  c+C					Clear line
+**  c+H					Backspace by word
+**  c+delete			Delete by word
+**  delete				Delete by char
+**  c+F					Search and replace
 ** -
 ** Other:
-**  c+F					Search and replace
 **  tab					Auto complete
 **  shift+tab			Auto complete in reverse order
 **  c+space				Disable J
