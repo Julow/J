@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/26 22:12:01 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/27 01:18:37 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/29 23:48:15 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void			key_ctrl_r(t_j *j)
 		ft_dstrset(&(j->prompt.line), 0, -1, res);
 		j->prompt.cursor = j->prompt.line.length;
 	}
+	j_set(j, J_REFRESH);
 }

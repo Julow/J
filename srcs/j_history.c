@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 23:23:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/29 00:47:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/29 23:09:46 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ void			j_history_save(t_hist *hist)
 		hist = hist->prev;
 	while (hist != NULL)
 	{
-		ft_write(&out, hist->str, hist->length);
-		ft_writechar(&out, '\n');
+		if (hist->length > 0)
+		{
+			ft_write(&out, hist->str, hist->length);
+			ft_writechar(&out, '\n');
+		}
 		hist = hist->next;
 	}
 	ft_flush(&out);
