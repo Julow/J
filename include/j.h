@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/29 12:18:44 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 00:46:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 ** -----
 ** History:
 **  up / right			Navigate in the history
-**  c+R					History search
+**  c+R					History search (see ft_hmatch.c)
 ** -
 ** Delete/Paste:
 **  c+K					Delete from the cursor to the end of line
@@ -160,5 +160,7 @@ void			key_ctrl_f(t_j *j);
 t_bool			ft_openpt(int *master, int *slave);
 
 void			ft_dstrreplace(t_dstr *str, t_sub search, t_sub replace);
+
+t_bool			ft_hmatch(char const *str, char const *pattern);
 
 #endif

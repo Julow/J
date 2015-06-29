@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/26 22:02:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 00:08:17 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 00:46:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static t_hist		*search_next(t_j *j, t_hist *hist, t_hist *def)
 {
-	while (hist != NULL && !ft_hidenp(j->search_prompt.line.str, hist->str))
+	while (hist != NULL && !ft_hmatch(hist->str, j->search_prompt.line.str))
 		hist = hist->next;
 	if (hist == NULL)
 		return (def);
@@ -26,7 +26,7 @@ static t_hist		*search_next(t_j *j, t_hist *hist, t_hist *def)
 
 static t_hist		*search_prev(t_j *j, t_hist *hist, t_hist *def)
 {
-	while (hist != NULL && !ft_hidenp(j->search_prompt.line.str, hist->str))
+	while (hist != NULL && !ft_hmatch(hist->str, j->search_prompt.line.str))
 		hist = hist->prev;
 	if (hist == NULL)
 		return (def);
@@ -37,9 +37,6 @@ static t_hist		*search_key(t_j *j, t_ulong key, t_hist *hist)
 {
 	if (key != KEY_PAGEDOWN)
 		ft_promptkey(&(j->search_prompt), key);
-	// while (hist->prev != NULL
-	// 	&& !ft_hidenp(j->search_prompt.line.str, hist->str))
-	// 	hist = hist->prev;
 	return (search_prev(j, hist, NULL));
 }
 
