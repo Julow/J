@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 17:23:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 18:29:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,46 +32,46 @@
 ** m = alt / option
 ** -----
 ** Cursor:
-**  left / right		Move cursor into line
+**  left / right			Move cursor into line
 **  c+left / c+right \
-**  m+left / m+right	Move cursor into line word by word
-**  c+A / home			Move to the start of the line
-**  c+E / end			Move to the end of the line
+**  m+left / m+right		Move cursor into line word by word
+**  c+A / home				Move to the start of the line
+**  c+E / end				Move to the end of the line
 ** -----
 ** History:
-**  up / right			Navigate in the history
-**  c+R					History search (see ft_hmatch.c)
+**  up / right				Navigate in the history
+**  c+R						History search (see ft_hmatch.c)
 ** -
 ** Cut/Paste:
 ** // All cut are chained into the clipboard
-**  c+K					Cut from the cursor to the end of line
-**  c+O					Cut from the begin of line to the cursor
-**  c+X					Cut the line
-**  c+Y					Paste last cut
-**  c+V					Paste last cut and remove it from the clipboard
+**  c+K						Cut from the cursor to the end of line
+**  c+O						Cut from the begin of line to the cursor
+**  c+X						Cut the line
+**  c+Y						Paste last cut
+**  c+V						Paste last cut and remove it from the clipboard
 ** -
 ** Edition:
-**  c+C					Clear line
-**  c+H					Backspace by word
-**  c+delete			Delete by word
-**  delete				Delete by char
-**  c+F					Search and replace
+**  c+C						Clear line
+**  c+H						Backspace by word
+**  c+delete				Delete by word
+**  delete					Delete by char
+**  c+F						Search and replace
 ** -
 ** Selection:
 ** // Pasting or writing a char overwrite the selection
 ** // Deletions delete the selected text
 ** // Moving cursor cancel selection
-**  s+left / s+right	Select text
-**  c+X / c+W			Cut the selection
-**  (TODO) c+D						Select current word
-**  (TODO) c+s+left / c+s+right		Select by word
-**  (TODO) c+F						Search and replace in the selection
-**  (TODO) Escape					Cancel selection
+**  s+left / s+right		Select text
+**  c+X / c+W				Cut the selection
+**  c+s+left / c+s+right	Select by word
+**  (TODO) c+D					Select current word
+**  (TODO) c+F					Search and replace in the selection
+**  (TODO) Escape				Cancel selection
 ** -
 ** Other:
-**  tab					Auto complete
-**  shift+tab			Auto complete in reverse order
-**  c+space				Disable J
+**  tab						Auto complete
+**  shift+tab				Auto complete in reverse order
+**  c+space					Disable J
 ** ========================================================================== **
 */
 

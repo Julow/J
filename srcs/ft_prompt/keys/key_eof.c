@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:31:09 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:46:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 18:27:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void			key_eof(t_prompt *p, int key)
 {
-	p->selection = 0;
+	t_val			word;
+
 	if (p->line.length > 0)
+	{
+		word = prompt_word(p);
+		p->cursor = word.to;
+		p->selection = -(word.to - word.from);
 		return ;
+	}
 	ft_dstradd_char(&(p->line), (char)key);
 	prompt_flush(p);
 }

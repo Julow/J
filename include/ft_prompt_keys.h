@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 17:20:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 18:10:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ typedef struct	s_binding
 
 # define KEY_SHIFT_RIGHT	73883020516123
 # define KEY_SHIFT_LEFT		74982532143899
+# define KEY_CTRL_S_RIGHT	73900200385307
+# define KEY_CTRL_S_LEFT	74999712013083
+# define KEY_ALT_S_RIGHT	18911811444235035
+# define KEY_ALT_S_LEFT		19193286420945691
 
 # define KEY_ESC			27
 # define KEY_BACK			127
@@ -85,6 +89,8 @@ void			key_ctrl_right(t_prompt *p);
 
 void			key_shift_right(t_prompt *p);
 void			key_shift_left(t_prompt *p);
+void			key_ctrl_shift_right(t_prompt *p);
+void			key_ctrl_shift_left(t_prompt *p);
 
 void			key_delete(t_prompt *p);
 void			key_backspace(t_prompt *p);

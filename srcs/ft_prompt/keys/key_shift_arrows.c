@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/30 13:03:29 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/06/30 13:15:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 18:08:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,24 @@ void			key_shift_left(t_prompt *p)
 		return ;
 	p->cursor--;
 	p->selection++;
+}
+
+void			key_ctrl_shift_right(t_prompt *p)
+{
+	t_val			word;
+
+	word = prompt_word(p);
+	word.to = word.to - p->cursor;
+	p->selection -= word.to;
+	p->cursor += word.to;
+}
+
+void			key_ctrl_shift_left(t_prompt *p)
+{
+	t_val			word;
+
+	word = prompt_word(p);
+	word.from = p->cursor - word.from;
+	p->selection += word.from;
+	p->cursor -= word.from;
 }
