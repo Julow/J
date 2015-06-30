@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/28 23:23:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/29 23:09:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 11:12:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			j_history_save(t_hist *hist)
 	t_out			out;
 	int				i;
 
-	out = OUT(open(HISTORY_FILE, O_WRONLY), buff, BUFF_SIZE);
+	out = OUT(open(HISTORY_FILE, O_WRONLY | O_CREAT), buff, BUFF_SIZE);
 	if (out.fd < 0)
 		return ;
 	i = HISTORY_MAX;

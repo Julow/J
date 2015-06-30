@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/26 22:02:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 00:46:32 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 11:10:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,12 @@ t_bool				j_search(t_j *j, t_hist *hist, t_sub *res)
 			|| key == KEY_CTRL_C || key == KEY_ESC)
 			break ;
 		else if (key == '\r')
-			return ((*res = SUB(hist->str, hist->length)), true);
+			return ((*res = (hist != NULL) ? SUB(hist->str, hist->length)
+				: SUBC("")), true);
 		else if (key == KEY_DOWN)
-			hist = search_next(j, hist->next, hist);
+			hist = (hist == NULL) ? NULL : search_next(j, hist->next, hist);
 		else if (key == KEY_UP)
-			hist = search_prev(j, hist->prev, hist);
+			hist = (hist == NULL) ? NULL : search_prev(j, hist->prev, hist);
 		else
 			hist = search_key(j, key, begin);
 	}

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 00:46:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 12:13:33 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@
 **  up / right			Navigate in the history
 **  c+R					History search (see ft_hmatch.c)
 ** -
-** Delete/Paste:
-**  c+K					Delete from the cursor to the end of line
-**  c+O					Delete from the begin of line to the cursor
-**  c+X					Delete current word
-**  c+Y					Paste last delete
-**  c+V					Paste last delete but keep it in the history
+** Cut/Paste:
+**  c+K					Cut from the cursor to the end of line
+**  c+O					Cut from the begin of line to the cursor
+**  c+X					Cut the line
+**  c+Y					Paste last cut
+**  c+V					Paste last cut and remove it from the clipboard
 ** -
 ** Edition:
 **  c+C					Clear line
