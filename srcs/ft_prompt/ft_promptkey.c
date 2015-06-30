@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 12:07:49 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 13:03:15 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ const t_binding	g_prompt_bindings[] = {
 	{KEY_CTRL_V,		&key_ctrl_v},
 	{KEY_CTRL_Y,		&key_ctrl_y},
 	{KEY_CTRL_W,		&key_ctrl_w},
+	{KEY_SHIFT_RIGHT,	&key_shift_right},
+	{KEY_SHIFT_LEFT,	&key_shift_left},
 	{1146821403,		&key_ctrl_left},
 	{74995417045787,	&key_ctrl_left},
 	{1130044187,		&key_ctrl_right},

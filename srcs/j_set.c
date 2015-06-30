@@ -1,16 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_refresh.c                                        :+:      :+:    :+:   */
+/*   j_set.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 22:09:40 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:23:43 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 13:44:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
+#include "ft_colors.h"
+
+static void		ft_promptput(t_prompt *p)
+{
+	int				tmp;
+
+	tmp = MIN(p->cursor, p->cursor + p->selection);
+	if (tmp > 0)
+		PN(p->line.str, tmp);
+	if (p->selection != 0)
+	{
+		PS(BG_GREEN);
+		PN(p->line.str + tmp, ABS(p->selection));
+		PS(BG_RESET);
+		tmp += ABS(p->selection);
+	}
+	PN(p->line.str + tmp, p->line.length - tmp);
+}
 
 void			j_set(t_j *j, int flags)
 {
@@ -21,7 +39,7 @@ void			j_set(t_j *j, int flags)
 	}
 	if (flags & J_SHOW)
 	{
-		PN(j->prompt.line.str, j->prompt.line.length);
+		ft_promptput(&(j->prompt));
 		PS(tgoto(j->caps.ch, 0, j->prompt.cursor + j->line_start));
 	}
 	FL;

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/27 23:47:54 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 12:21:01 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_prompt
 */
 	t_dstr			line;
 	int				cursor;
+	int				selection;
 /*
 ** history
 */
