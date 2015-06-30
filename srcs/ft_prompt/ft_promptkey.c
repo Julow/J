@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:03:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 16:57:08 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void			ft_promptkey(t_prompt *p, t_ulong key)
 	if (key >= 128 || !IS(key, IS_PRINT | IS_WHITE))
 		ft_printf("\r\n[DEBUG] Unhandled key: %lld\r\n", key);
 	i = ft_strlen((char*)&key);
-	ft_dstrset(&(p->line), p->cursor, p->cursor, SUB((char*)&key, i));
-	p->cursor += i;
+	ft_dstrset(&(p->line), p->cursor, p->cursor + p->selection,
+		SUB((char*)&key, i));
+	p->cursor = i + MIN(p->selection + p->cursor, p->cursor);
+	p->selection = 0;
 }

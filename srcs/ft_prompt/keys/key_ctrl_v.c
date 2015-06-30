@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:05:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:46:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 16:47:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ void			key_ctrl_v(t_prompt *p)
 {
 	t_hist			*tmp;
 
-	p->selection = 0;
 	if (p->deletions == NULL)
 		return ;
 	tmp = p->deletions;
-	ft_dstrset(&(p->line), p->cursor, p->cursor, SUB(tmp->str, tmp->length));
-	p->cursor += tmp->length;
+	ft_dstrset(&(p->line), p->cursor, p->cursor + p->selection,
+		SUB(tmp->str, tmp->length));
+	p->cursor = tmp->length + MIN(p->selection + p->cursor, p->cursor);
+	p->selection = 0;
 	p->deletions = tmp->prev;
 	free(tmp);
 }
