@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 15:13:22 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 17:23:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@
 ** -
 ** Selection:
 ** // Pasting or writing a char overwrite the selection
+** // Deletions delete the selected text
 ** // Moving cursor cancel selection
 **  s+left / s+right	Select text
 **  c+X / c+W			Cut the selection
 **  (TODO) c+D						Select current word
 **  (TODO) c+s+left / c+s+right		Select by word
-**  (TODO) backspace / delete / c+H	Delete selected text
 **  (TODO) c+F						Search and replace in the selection
 **  (TODO) Escape					Cancel selection
 ** -

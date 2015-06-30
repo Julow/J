@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:14:51 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 17:20:56 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void			key_shift_left(t_prompt *p);
 
 void			key_delete(t_prompt *p);
 void			key_backspace(t_prompt *p);
+void			key_delete_selection(t_prompt *p);
 
 void			key_ctrl_delete(t_prompt *p);
 void			key_ctrl_backspace(t_prompt *p);
