@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 21:18:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:16:14 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 13:45:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void			key_up(t_prompt *p)
 {
+	p->selection = 0;
 	if (p->hist_curr == NULL)
 	{
 		p->hist_curr = p->history;
@@ -34,12 +35,14 @@ void			key_up(t_prompt *p)
 
 void			key_right(t_prompt *p)
 {
+	p->selection = 0;
 	if (p->cursor < p->line.length)
 		p->cursor++;
 }
 
 void			key_down(t_prompt *p)
 {
+	p->selection = 0;
 	if (p->hist_curr == NULL)
 	{
 		if (p->line.length > 0)
@@ -56,6 +59,7 @@ void			key_down(t_prompt *p)
 
 void			key_left(t_prompt *p)
 {
+	p->selection = 0;
 	if (p->cursor > 0)
 		p->cursor--;
 }

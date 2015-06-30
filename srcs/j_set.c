@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 22:09:40 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:44:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 15:10:15 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		ft_promptput(t_prompt *p)
 		PN(p->line.str, tmp);
 	if (p->selection != 0)
 	{
-		PS(BG_GREEN);
+		PS(BG_LMAGENTA);
 		PN(p->line.str + tmp, ABS(p->selection));
 		PS(BG_RESET);
 		tmp += ABS(p->selection);

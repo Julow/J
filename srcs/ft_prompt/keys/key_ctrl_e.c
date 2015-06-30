@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/17 00:24:43 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:17:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/06/30 13:45:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void			key_ctrl_e(t_prompt *p)
 {
+	p->selection = 0;
 	p->cursor = p->line.length;
 }

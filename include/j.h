@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 12:13:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/06/30 15:13:22 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 **  c+R					History search (see ft_hmatch.c)
 ** -
 ** Cut/Paste:
+** // All cut are chained into the clipboard
 **  c+K					Cut from the cursor to the end of line
 **  c+O					Cut from the begin of line to the cursor
 **  c+X					Cut the line
@@ -55,6 +56,17 @@
 **  c+delete			Delete by word
 **  delete				Delete by char
 **  c+F					Search and replace
+** -
+** Selection:
+** // Pasting or writing a char overwrite the selection
+** // Moving cursor cancel selection
+**  s+left / s+right	Select text
+**  c+X / c+W			Cut the selection
+**  (TODO) c+D						Select current word
+**  (TODO) c+s+left / c+s+right		Select by word
+**  (TODO) backspace / delete / c+H	Delete selected text
+**  (TODO) c+F						Search and replace in the selection
+**  (TODO) Escape					Cancel selection
 ** -
 ** Other:
 **  tab					Auto complete
