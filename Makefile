@@ -17,8 +17,11 @@ DIRS := srcs include
 # Obj directory
 O_DIR := o
 
-# Makefiles to call
+# Makefiles to call (directory)
 LIBS := libft
+
+# Modules to init (directory)
+MODULES := libft
 
 # Number of threads
 THREADS := 1
@@ -94,7 +97,7 @@ MSG_END := printf '\n'
 
 .SILENT:
 
-all: $(LIBS) $(NAME)
+all: $(addsuffix /.git,$(MODULES)) $(LIBS) $(NAME)
 .PHONY: all
 
 $(NAME): $(O_FILES)
@@ -283,6 +286,10 @@ o/srcs/keys/key_refresh.o: srcs/keys/key_refresh.c include/ft_proc.h include/ft_
 $(LIBS):
 	@make -C $@
 .PHONY: $(LIBS)
+
+$(addsuffix /.git,$(MODULES)):
+	@git submodule init $(@:.git=)
+	@git submodule update $(@:.git=)
 
 clean:
 	@rm -f $(O_FILES) 2> /dev/null || true
