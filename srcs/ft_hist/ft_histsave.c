@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/04 14:39:59 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 15:42:45 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 21:22:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 #include "j.h"
 #include <fcntl.h>
 
-void			ft_histsave(t_hist *hist, char const *file)
+void			ft_histsave(t_hist *hist, t_sub file)
 {
 	char			buff[BUFF_SIZE];
 	t_out			out;
 	int				i;
 
-	out = OUT(open(file, O_WRONLY | O_CREAT | O_TRUNC, FILE_MODE),
-		buff, BUFF_SIZE);
+	out = OUT(ft_open(file, O_WRONLY | O_CREAT | O_TRUNC), buff, BUFF_SIZE);
 	if (out.fd < 0)
 		return ;
 	i = HISTORY_MAX;

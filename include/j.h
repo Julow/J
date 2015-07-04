@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 20:37:51 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 21:22:16 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 # define PN(s,n)			(ft_write(FTOUT, (s), (n)))
 
-# define HISTORY_FILE		".j_history"
+# define HISTORY_FILE		"~/.j_history"
 # define HISTORY_MAX		256
 # define HISTORY_TIMEOUT	30
 

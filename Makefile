@@ -57,6 +57,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/slave.o \
 	o/srcs/ft/ft_dstrreplace.o \
 	o/srcs/ft/ft_hmatch.o \
+	o/srcs/ft/ft_open.o \
 	o/srcs/ft/ft_openpt.o \
 	o/srcs/ft/ft_pidpath.o \
 	o/srcs/ft_hist/ft_histadd.o \
@@ -150,6 +151,10 @@ o/srcs/ft/ft_dstrreplace.o: srcs/ft/ft_dstrreplace.c include/ft_hist.h include/f
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft/ft_hmatch.o: srcs/ft/ft_hmatch.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/ft 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft/ft_open.o: srcs/ft/ft_open.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
