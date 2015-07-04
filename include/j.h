@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 21:22:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 22:45:51 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,11 @@
 
 # define SELECT_TIMEOUT		{1, 0}
 
-# define MASTER_BUFF		512
+# define MASTER_BUFF		BUFF_SIZE
+
+# define OUTPUT_MAX			8
+# define OUTPUT_MAX_LEN		128
+# define OUTPUT_CHECK_LEN	(128 * 2)
 
 # define PIPE_READ			0
 # define PIPE_WRITE			1
@@ -72,6 +76,12 @@ typedef struct	s_j
 	t_caps			caps;
 	int				flags;
 	int				line_start;
+// -
+	t_hist			*output[OUTPUT_MAX];
+	t_hist			*output_curr;
+	int				output_curr_len;
+	t_dstr			current_line;
+// -
 	time_t			history_timeout;
 	t_prompt		prompt;
 	t_prompt		search_prompt;
@@ -105,6 +115,9 @@ void			j_key(t_j *j, t_ulong key);
 t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 t_bool			j_ask(t_j *j, char const *q, t_sub *res);
 
+void			j_output_save(t_j *j);
+void			j_output_line(t_j *j);
+
 /*
 ** keys
 */
@@ -112,6 +125,7 @@ void			key_refresh(t_j *j);
 void			key_ctrl_l(t_j *j);
 void			key_ctrl_r(t_j *j);
 void			key_ctrl_f(t_j *j);
+void			key_debug(t_j *j);
 
 /*
 ** utils

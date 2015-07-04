@@ -49,6 +49,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/j_ask.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_key.o \
+	o/srcs/j_output.o \
 	o/srcs/j_search.o \
 	o/srcs/j_set.o \
 	o/srcs/main.o \
@@ -92,6 +93,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/keys/key_ctrl_f.o \
 	o/srcs/keys/key_ctrl_l.o \
 	o/srcs/keys/key_ctrl_r.o \
+	o/srcs/keys/key_debug.o \
 	o/srcs/keys/key_refresh.o
 
 MSG_0 := printf '\033[0;32m%-40.40s\033[0;0m\r'
@@ -119,6 +121,10 @@ o/srcs/j_flush.o: srcs/j_flush.c include/ft_hist.h include/ft_prompt.h include/f
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/j_key.o: srcs/j_key.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_output.o: srcs/j_output.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -291,6 +297,10 @@ o/srcs/keys/key_ctrl_l.o: srcs/keys/key_ctrl_l.c include/ft_hist.h include/ft_pr
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/keys/key_ctrl_r.o: srcs/keys/key_ctrl_r.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_debug.o: srcs/keys/key_debug.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
