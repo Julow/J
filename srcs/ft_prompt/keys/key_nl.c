@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:46:35 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/04 15:46:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void			key_nl(t_prompt *p, int key)
 {
 	if (p->line.length > 0)
-		prompt_history(p, p->line);
+		ft_histadd(&(p->history), ft_dstrsub(&(p->line), 0, -1));
 	ft_dstradd_char(&(p->line), (char)key);
 	prompt_flush(p);
 }

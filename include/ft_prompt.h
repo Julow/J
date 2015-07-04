@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 12:21:01 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/04 15:44:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,7 @@
 
 # include "libft.h"
 # include "ft_dstr.h"
-
-typedef struct	s_hist
-{
-	struct s_hist	*prev;
-	struct s_hist	*next;
-	char			*str;
-	int				length;
-}				t_hist;
+# include "ft_hist.h"
 
 typedef struct	s_prompt_events
 {
@@ -74,7 +67,6 @@ void			prompt_flush(t_prompt *p);
 
 t_val			prompt_word(t_prompt *p);
 
-void			prompt_history(t_prompt *p, t_dstr str);
 void			prompt_deletion(t_prompt *p, t_sub str);
 
 t_bool			prompt_glob(t_prompt *p);

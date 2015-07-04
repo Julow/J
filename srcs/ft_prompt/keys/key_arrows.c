@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 21:18:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 13:45:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/04 15:45:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			key_up(t_prompt *p)
 		p->hist_curr = p->history;
 		if (p->line.length > 0)
 		{
-			prompt_history(p, p->line);
+			ft_histadd(&(p->history), ft_dstrsub(&(p->line), 0, -1));
 			p->hist_curr = p->history->prev;
 		}
 	}
@@ -46,7 +46,7 @@ void			key_down(t_prompt *p)
 	if (p->hist_curr == NULL)
 	{
 		if (p->line.length > 0)
-			prompt_history(p, p->line);
+			ft_histadd(&(p->history), ft_dstrsub(&(p->line), 0, -1));
 		ft_dstrpop(&(p->line), -1);
 		return ;
 	}

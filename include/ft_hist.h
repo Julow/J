@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_flush.c                                          :+:      :+:    :+:   */
+/*   ft_hist.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/25 22:35:30 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 14:46:31 by juloo            ###   ########.fr       */
+/*   Created: 2015/07/04 14:38:28 by juloo             #+#    #+#             */
+/*   Updated: 2015/07/04 15:41:17 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
-#include <unistd.h>
+#ifndef FT_HIST_H
+# define FT_HIST_H
 
-void			j_flush(t_j *j)
+# include "libft.h"
+
+typedef struct	s_hist
 {
-	j->flags |= FLAG_RETURN;
-	write(j->master, j->prompt.line.str, j->prompt.line.length);
-	ft_histtrunc(&(j->prompt.history), HISTORY_MAX);
-	ft_histsave(j->prompt.history, HISTORY_FILE);
-}
+	struct s_hist	*prev;
+	struct s_hist	*next;
+	char			*str;
+	int				length;
+}				t_hist;
+
+void			ft_histsave(t_hist *hist, char const *file);
+void			ft_histdelete(t_hist *hist);
+void			ft_histtrunc(t_hist **hist, int max);
+void			ft_histload(t_hist **hist, char const *file);
+void			ft_histadd(t_hist **hist, t_sub add);
+
+#endif

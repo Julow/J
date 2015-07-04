@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_flush.c                                          :+:      :+:    :+:   */
+/*   ft_histadd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/25 22:35:30 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 14:46:31 by juloo            ###   ########.fr       */
+/*   Created: 2015/07/04 15:36:24 by juloo             #+#    #+#             */
+/*   Updated: 2015/07/04 15:41:44 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "j.h"
-#include <unistd.h>
+#include "ft_hist.h"
 
-void			j_flush(t_j *j)
+void			ft_histadd(t_hist **hist, t_sub add)
 {
-	j->flags |= FLAG_RETURN;
-	write(j->master, j->prompt.line.str, j->prompt.line.length);
-	ft_histtrunc(&(j->prompt.history), HISTORY_MAX);
-	ft_histsave(j->prompt.history, HISTORY_FILE);
+	t_hist			*tmp;
+
+	tmp = ft_emalloc(add.length + 1 + sizeof(t_hist));
+	*tmp = (t_hist){
+		*hist,
+		NULL,
+		((void*)tmp) + sizeof(t_hist),
+		add.length
+	};
+	ft_memcpy(tmp->str, add.str, add.length + 1);
+	(*hist)->next = tmp;
+	*hist = tmp;
 }

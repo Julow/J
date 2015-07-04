@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 18:29:37 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/04 14:47:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 **  c+X / c+W				Cut the selection
 **  c+s+left / c+s+right	Select by word
 **  (TODO) c+D					Select current word
-**  (TODO) c+F					Search and replace in the selection
+**  c+F						Search and replace in the selection
 **  (TODO) Escape				Cancel selection
 ** -
 ** Other:
@@ -94,6 +94,8 @@
 # define HISTORY_MAX	256
 
 # define BUFF_SIZE		512
+
+# define FILE_MODE		0644
 
 # define MASTER_BUFF	512
 
@@ -154,9 +156,6 @@ void			j_key(t_j *j, t_ulong key);
 
 t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 t_bool			j_ask(t_j *j, char const *q, t_sub *res);
-
-void			j_history_save(t_hist *hist);
-void			j_history_load(t_hist **hist);
 
 /*
 ** keys

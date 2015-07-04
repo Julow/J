@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   j_history.c                                        :+:      :+:    :+:   */
+/*   ft_histsave.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/06/28 23:23:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 11:12:37 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/07/04 14:39:59 by juloo             #+#    #+#             */
+/*   Updated: 2015/07/04 15:42:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_hist.h"
 #include "j.h"
 #include <fcntl.h>
 
-void			j_history_save(t_hist *hist)
+void			ft_histsave(t_hist *hist, char const *file)
 {
 	char			buff[BUFF_SIZE];
 	t_out			out;
 	int				i;
 
-	out = OUT(open(HISTORY_FILE, O_WRONLY | O_CREAT), buff, BUFF_SIZE);
+	out = OUT(open(file, O_WRONLY | O_CREAT | O_TRUNC, FILE_MODE),
+		buff, BUFF_SIZE);
 	if (out.fd < 0)
 		return ;
 	i = HISTORY_MAX;
@@ -35,23 +37,4 @@ void			j_history_save(t_hist *hist)
 		hist = hist->next;
 	}
 	ft_flush(&out);
-}
-
-void			j_history_load(t_hist **hist)
-{
-	int				fd;
-	t_hist			*tmp;
-	t_sub			line;
-
-	if ((fd = open(HISTORY_FILE, O_RDONLY)) < 0)
-		return ;
-	while (get_next_line(fd, &line) > 0)
-	{
-		tmp = (t_hist*)MAL(t_byte, sizeof(t_hist) + line.length + 1);
-		*tmp = (t_hist){NULL, NULL, ((void*)tmp) + sizeof(t_hist), line.length};
-		ft_memcpy(tmp->str, line.str, line.length + 1);
-		tmp->prev = *hist;
-		tmp->prev->next = tmp;
-		*hist = tmp;
-	}
 }
