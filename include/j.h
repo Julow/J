@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 16:52:10 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 20:37:51 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 # include "libft.h"
 # include "ft_dstr.h"
+
 # include "ft_term.h"
 # include "ft_prompt.h"
+
+# include <time.h>
 
 /*
 ** ========================================================================== **
@@ -24,85 +27,34 @@
 */
 
 /*
-** ========================================================================== **
-** Bindings
-** -----
-** c = ctrl
-** s = shift
-** m = alt / option
-** -----
-** Cursor:
-**  left / right			Move cursor into line
-**  c+left / c+right \
-**  m+left / m+right		Move cursor into line word by word
-**  c+A / home				Move to the start of the line
-**  c+E / end				Move to the end of the line
-** -----
-** History:
-**  up / right				Navigate in the history
-**  c+R						History search (see ft_hmatch.c)
-** -
-** Cut/Paste:
-** // All cut are chained into the clipboard
-**  c+K						Cut from the cursor to the end of line
-**  c+O						Cut from the begin of line to the cursor
-**  c+X						Cut the line
-**  c+Y						Paste last cut
-**  c+V						Paste last cut and remove it from the clipboard
-** -
-** Edition:
-**  c+C						Clear line
-**  c+H						Backspace by word
-**  c+delete				Delete by word
-**  delete					Delete by char
-**  c+F						Search and replace
-** -
-** Selection:
-** // Pasting or writing a char overwrite the selection
-** // Deletions delete the selected text
-** // Moving cursor cancel selection
-**  s+left / s+right		Select text
-**  c+X / c+W				Cut the selection
-**  c+s+left / c+s+right	Select by word
-**  (TODO) c+D					Select current word
-**  c+F						Search and replace in the selection
-**  (TODO) Escape				Cancel selection
-** -
-** Other:
-**  tab						Auto complete
-**  shift+tab				Auto complete in reverse order
-**  c+space					Disable J
-** ========================================================================== **
-*/
-
-/*
 ** TODO:
-**  Selection with keyboard
-**  Fullscreen mode
 **  Keep last output for search
 **  Save last output for later
 **  Write an output in stdin
 **  Pipe an output to a system command
 **  Use of ft_regex
 **  Config
-**  Put deletion history into a tab completion
+**  Put clipboard into a tab completion
 */
 
-# define PN(s,n)		(ft_write(FTOUT, (s), (n)))
+# define PN(s,n)			(ft_write(FTOUT, (s), (n)))
 
-# define HISTORY_FILE	".j_history"
-# define HISTORY_MAX	256
+# define HISTORY_FILE		".j_history"
+# define HISTORY_MAX		256
+# define HISTORY_TIMEOUT	30
 
-# define BUFF_SIZE		512
+# define BUFF_SIZE			512
 
-# define FILE_MODE		0644
+# define FILE_MODE			0664
 
-# define MASTER_BUFF	512
+# define SELECT_TIMEOUT		{1, 0}
 
-# define PIPE_READ		0
-# define PIPE_WRITE		1
+# define MASTER_BUFF		512
 
-# define MAX_ESCAPE_LEN	8
+# define PIPE_READ			0
+# define PIPE_WRITE			1
+
+# define MAX_ESCAPE_LEN		8
 
 typedef struct	s_caps
 {
@@ -120,6 +72,7 @@ typedef struct	s_j
 	t_caps			caps;
 	int				flags;
 	int				line_start;
+	time_t			history_timeout;
 	t_prompt		prompt;
 	t_prompt		search_prompt;
 	t_prompt		ask_prompt;

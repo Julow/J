@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:32:32 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 20:36:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,19 @@ static t_bool	read_slave(t_j *j)
 	return (true);
 }
 
+static void		history_save(t_j *j)
+{
+	time_t			t;
+
+	t = time(NULL);
+	if ((t - j->history_timeout) > HISTORY_TIMEOUT)
+	{
+		ft_histtrunc(&(j->prompt.history), HISTORY_MAX);
+		ft_histsave(j->prompt.history, HISTORY_FILE);
+		j->history_timeout = t;
+	}
+}
+
 void			start_master(t_j *j)
 {
 	fd_set			fd_read;
@@ -58,11 +71,13 @@ void			start_master(t_j *j)
 		FD_ZERO(&fd_read);
 		FD_SET(0, &fd_read);
 		FD_SET(j->master, &fd_read);
-		if (select(j->master + 1, &fd_read, NULL, NULL, NULL) < 0)
+		if (select(j->master + 1, &fd_read, NULL, NULL,
+			&(struct timeval)SELECT_TIMEOUT) < 0)
 			continue ;
 		if (FD_ISSET(0, &fd_read) && !read_stdin(j))
 			break ;
 		if (FD_ISSET(j->master, &fd_read) && !read_slave(j))
 			break ;
+		history_save(j);
 	}
 }
