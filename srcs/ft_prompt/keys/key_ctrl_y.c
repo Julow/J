@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 00:05:14 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 16:48:28 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/04 16:57:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void			key_ctrl_y(t_prompt *p)
 {
-	if (p->deletions == NULL)
+	if (p->clipboard == NULL)
 		return ;
-	p->deletions = p->deletions;
+	p->clipboard = p->clipboard;
 	ft_dstrset(&(p->line), p->cursor, p->cursor + p->selection,
-		SUB(p->deletions->str, p->deletions->length));
-	p->cursor = p->deletions->length + MIN(p->selection + p->cursor, p->cursor);
+		SUB(p->clipboard->str, p->clipboard->length));
+	p->cursor = p->clipboard->length + MIN(p->selection + p->cursor, p->cursor);
 	p->selection = 0;
 }

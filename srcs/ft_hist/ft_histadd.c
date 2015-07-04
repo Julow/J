@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/04 15:36:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 15:41:44 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 16:58:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void			ft_histadd(t_hist **hist, t_sub add)
 		add.length
 	};
 	ft_memcpy(tmp->str, add.str, add.length + 1);
-	(*hist)->next = tmp;
+	if (*hist != NULL)
+		(*hist)->next = tmp;
 	*hist = tmp;
 }

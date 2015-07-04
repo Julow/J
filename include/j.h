@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 14:47:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 16:52:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,7 @@ typedef struct	s_caps
 {
 	char			*ch; // Move cursor x (Maybe unsupported)
 	char			*ce; // Clear from cursor to right
-	char			*cm; // Move cursor x y
 	char			*cl; // Clear screen
-	char			*vi; // VI mode (cursor hide)
-	char			*ve; // exit VI mode
-	char			*ti; // TI mode (tmp screen)
-	char			*te; // exit TI mode
 }				t_caps;
 
 typedef struct	s_j

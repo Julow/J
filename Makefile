@@ -65,7 +65,6 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_hist/ft_histsave.o \
 	o/srcs/ft_hist/ft_histtrunc.o \
 	o/srcs/ft_prompt/completion.o \
-	o/srcs/ft_prompt/deletion.o \
 	o/srcs/ft_prompt/flush.o \
 	o/srcs/ft_prompt/ft_freeall.o \
 	o/srcs/ft_prompt/ft_promptinit.o \
@@ -183,10 +182,6 @@ o/srcs/ft_hist/ft_histtrunc.o: srcs/ft_hist/ft_histtrunc.c include/ft_hist.h inc
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_prompt/completion.o: srcs/ft_prompt/completion.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
-	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
-o/srcs/ft_prompt/deletion.o: srcs/ft_prompt/deletion.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

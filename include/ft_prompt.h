@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 15:44:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/04 16:55:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	s_prompt
 */
 	t_hist			*history;
 	t_hist			*hist_curr;
-	t_hist			*deletions;
+	t_hist			*clipboard;
 /*
 ** tab completion
 */
@@ -66,8 +66,6 @@ void			ft_promptkey(t_prompt *p, t_ulong key);
 void			prompt_flush(t_prompt *p);
 
 t_val			prompt_word(t_prompt *p);
-
-void			prompt_deletion(t_prompt *p, t_sub str);
 
 t_bool			prompt_glob(t_prompt *p);
 
