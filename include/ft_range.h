@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/05 20:26:18 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/05 20:37:04 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 20:50:19 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static inline t_range	ft_rangelimit(t_range r, t_range limit)
 {
 	if (r.from < limit.from)
 		r.from = limit.from;
-	else if (r.from > limit.from)
-		r.from = limit.from;
-	if (r.to < limit.to)
-		r.to = limit.to;
+	else if (r.from > limit.to)
+		r.from = limit.to;
+	if (r.to < limit.from)
+		r.to = limit.from;
 	else if (r.to > limit.to)
 		r.to = limit.to;
 	return (r);
