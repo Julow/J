@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/30 11:59:30 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/07/04 16:55:08 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 20:40:52 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void			key_ctrl_w(t_prompt *p)
 {
-	t_val			val;
+	t_range			range;
 
 	if (p->selection != 0)
 	{
-		val.from = MIN(p->cursor, p->cursor + p->selection);
+		range.from = MIN(p->cursor, p->cursor + p->selection);
 		if (p->selection > 0)
 			p->cursor += p->selection;
-		val.to = p->cursor;
+		range.to = p->cursor;
 		p->selection = 0;
 	}
 	else
-		val = prompt_word(p);
-	if (val.from < p->cursor)
+		range = prompt_word(p);
+	if (range.from < p->cursor)
 	{
 		ft_histadd(&(p->clipboard),
-			ft_dstrsub(&(p->line), val.from, p->cursor));
-		ft_dstrset(&(p->line), val.from, p->cursor, SUBC(""));
-		p->cursor = val.from;
+			ft_dstrsub(&(p->line), range.from, p->cursor));
+		ft_dstrset(&(p->line), range.from, p->cursor, SUBC(""));
+		p->cursor = range.from;
 	}
 }

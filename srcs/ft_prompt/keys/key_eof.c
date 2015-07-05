@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:31:09 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 18:27:33 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/05 20:40:57 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			key_eof(t_prompt *p, int key)
 {
-	t_val			word;
+	t_range			word;
 
 	if (p->line.length > 0)
 	{

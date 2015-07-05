@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/05 19:07:02 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 20:38:36 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "ft_dstr.h"
 # include "ft_hist.h"
+# include "ft_range.h"
 
 # define PROMPT_MARGIN	8
 
@@ -51,14 +52,6 @@ typedef struct	s_prompt
 	int				tab_curr;
 }				t_prompt;
 
-typedef struct	s_val
-{
-	int				from;
-	int				to;
-}				t_val;
-
-# define VAL(f,t)		((t_val){(f), (t)})
-
 void			ft_promptinit(t_prompt *p, t_prompt_events events);
 void			ft_promptkey(t_prompt *p, t_ulong key);
 
@@ -76,7 +69,7 @@ int				ft_promptput(t_prompt *p, int max_width);
 */
 void			prompt_flush(t_prompt *p);
 
-t_val			prompt_word(t_prompt *p);
+t_range			prompt_word(t_prompt *p);
 
 t_bool			prompt_glob(t_prompt *p);
 

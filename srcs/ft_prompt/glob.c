@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/21 22:24:19 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:20:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 20:39:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 static t_bool	get_path(t_prompt *p, t_dstr *dst, t_sub *file)
 {
-	t_val			word;
+	t_range			word;
 	char			*tmp;
 	int				i;
 
-	word = VAL(p->cursor - 1, p->cursor);
+	word = RANGE(p->cursor - 1, p->cursor);
 	while (word.from >= 0 && IS(p->line.str[word.from], ~IS_SPACE))
 		word.from--;
 	word.from++;
