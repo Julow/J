@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 16:55:38 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 19:07:02 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "libft.h"
 # include "ft_dstr.h"
 # include "ft_hist.h"
+
+# define PROMPT_MARGIN	8
 
 typedef struct	s_prompt_events
 {
@@ -59,6 +61,15 @@ typedef struct	s_val
 
 void			ft_promptinit(t_prompt *p, t_prompt_events events);
 void			ft_promptkey(t_prompt *p, t_ulong key);
+
+/*
+** ft_promptput
+** ----
+** Put the line to FTOUT
+** ----
+** Return the position of the cursor
+*/
+int				ft_promptput(t_prompt *p, int max_width);
 
 /*
 ** internal

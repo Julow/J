@@ -71,6 +71,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_prompt/ft_freeall.o \
 	o/srcs/ft_prompt/ft_promptinit.o \
 	o/srcs/ft_prompt/ft_promptkey.o \
+	o/srcs/ft_prompt/ft_promptput.o \
 	o/srcs/ft_prompt/glob.o \
 	o/srcs/ft_prompt/motions.o \
 	o/srcs/ft_prompt/keys/key_arrows.o \
@@ -209,6 +210,10 @@ o/srcs/ft_prompt/ft_promptinit.o: srcs/ft_prompt/ft_promptinit.c include/ft_hist
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_prompt/ft_promptkey.o: srcs/ft_prompt/ft_promptkey.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
+	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft_prompt/ft_promptput.o: srcs/ft_prompt/ft_promptput.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/j.h include/msg.h
 	@mkdir -p o/srcs/ft_prompt 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
