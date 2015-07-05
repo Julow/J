@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 22:09:40 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 15:10:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/05 16:19:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void			j_set(t_j *j, int flags)
 {
 	if (flags & J_HIDE)
 	{
-		PS(tgoto(j->caps.ch, 0, j->line_start));
+		PS(tgoto(j->caps.ch, 0, j->cursor_start));
 		PS(j->caps.ce);
 	}
 	if (flags & J_SHOW)
 	{
 		ft_promptput(&(j->prompt));
-		PS(tgoto(j->caps.ch, 0, j->prompt.cursor + j->line_start));
+		PS(tgoto(j->caps.ch, 0, j->prompt.cursor + j->cursor_start));
 	}
 	FL;
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 18:10:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/05 16:02:26 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_binding
 # define KEY_CTRL_W			23
 # define KEY_CTRL_X			24
 # define KEY_CTRL_Y			25
+# define KEY_CTRL_SLASH		31
 # define KEY_CTRL_SPACE		0
 
 # define KEY_SHIFT_TAB		5921563

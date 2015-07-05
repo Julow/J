@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/26 22:02:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/30 11:10:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/07/05 16:19:00 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void			search_refresh(t_j *j, t_hist *hist)
 		PS("(no result)");
 	else
 		PN(hist->str, hist->length);
-	PS(tgoto(j->caps.ch, 0, j->line_start + j->search_prompt.cursor + 1));
+	PS(tgoto(j->caps.ch, 0, j->cursor_start + j->search_prompt.cursor + 1));
 	FL;
 }
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 22:45:51 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/05 16:18:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 
 # define OUTPUT_MAX			8
 # define OUTPUT_MAX_LEN		128
-# define OUTPUT_CHECK_LEN	(128 * 2)
+# define OUTPUT_MAX_CURR	(OUTPUT_MAX_LEN + 64)
 
 # define PIPE_READ			0
 # define PIPE_WRITE			1
@@ -75,12 +75,12 @@ typedef struct	s_j
 	t_term			term;
 	t_caps			caps;
 	int				flags;
-	int				line_start;
 // -
 	t_hist			*output[OUTPUT_MAX];
 	t_hist			*output_curr;
 	int				output_curr_len;
 	t_dstr			current_line;
+	int				cursor_start;
 // -
 	time_t			history_timeout;
 	t_prompt		prompt;
