@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 22:40:11 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/07 00:55:27 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 
 # define PN(s,n)			(ft_write(FTOUT, (s), (n)))
 
-# define HISTORY_FILE		"~/.j_history"
-# define HISTORY_MAX		256
+# define DEF_HIST_FILE		"~/.j_history"
+# define DEF_HIST_MAX		256
 # define HISTORY_TIMEOUT	30
 
 # define BUFF_SIZE			512
@@ -64,8 +64,8 @@ typedef struct	s_caps
 	char			*ce; // Clear from cursor to right
 	char			*cl; // Clear screen
 	char			*ti;
-	char			*te;
-	char			*cm;
+	char			*te; // End TI mode
+	char			*cm; // Move cursor x y
 }				t_caps;
 
 typedef struct	s_j
@@ -76,6 +76,8 @@ typedef struct	s_j
 	t_term			term;
 	t_caps			caps;
 	int				flags;
+	char			*history_file;
+	int				history_max;
 // -
 	t_hist			*output[OUTPUT_MAX];
 	t_hist			*output_curr;

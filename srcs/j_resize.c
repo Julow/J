@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/06 22:18:20 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 23:50:22 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/07 00:32:25 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void		resize_handler(int sig)
 	struct winsize	size;
 
 	j = save_j(NULL);
-	ft_printf("[DEBUG] resize_handler\r\n");
 	ft_tupdate(&(j->term));
 	kill(j->slave_pid, sig);
 	size.ws_col = j->term.width;

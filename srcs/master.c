@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 21:24:35 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/07 00:37:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void		history_save(t_j *j)
 	t = time(NULL);
 	if ((t - j->history_timeout) > HISTORY_TIMEOUT)
 	{
-		ft_histtrunc(&(j->prompt.history), HISTORY_MAX);
-		ft_histsave(j->prompt.history, SUBC(HISTORY_FILE));
+		ft_histtrunc(&(j->prompt.history), j->history_max);
+		ft_histsave(j->prompt.history, SUBC(j->history_file));
 		j->history_timeout = t;
 	}
 }
