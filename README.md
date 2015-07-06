@@ -58,4 +58,5 @@ Moving the cursor cancel the selection
 | ctrl+H			| Backspace by word |
 | ctrl+delete		| Delete by word |
 | ctrl+F			| Search and replace |
+| ctrl+G			| Edit line using an editor<br>($J_EDITOR, $EDITOR, "vi") |
 | ctrl+space		| Toggle J |

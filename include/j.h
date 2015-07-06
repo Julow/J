@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/05 16:18:43 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 16:03:31 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@
 # define HISTORY_TIMEOUT	30
 
 # define BUFF_SIZE			512
-
-# define FILE_MODE			0664
 
 # define SELECT_TIMEOUT		{1, 0}
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/05 16:02:26 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 15:10:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct	s_binding
 # define KEY_CTRL_D			4
 # define KEY_CTRL_E			5
 # define KEY_CTRL_F			6
+# define KEY_CTRL_G			7
 # define KEY_CTRL_H			8
 # define KEY_CTRL_K			11
 # define KEY_CTRL_L			12
@@ -110,5 +111,7 @@ void			key_ctrl_w(t_prompt *p);
 
 void			key_ctrl_v(t_prompt *p);
 void			key_ctrl_y(t_prompt *p);
+
+void			key_ctrl_g(t_prompt *p);
 
 #endif

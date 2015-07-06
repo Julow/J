@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/05 20:38:36 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 16:27:58 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # include "ft_range.h"
 
 # define PROMPT_MARGIN	8
+
+# define DEFAULT_EDITOR	"vi"
+
+# define FILE_MODE		0664
 
 typedef struct	s_prompt_events
 {
@@ -79,5 +83,7 @@ void			prompt_completion(t_prompt *p, int order);
 ** utils
 */
 void			ft_freeall(void *data, int count, int size, void (*f)());
+
+int				ft_call(char **cmd);
 
 #endif
