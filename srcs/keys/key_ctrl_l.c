@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 23:07:36 by juloo             #+#    #+#             */
-/*   Updated: 2015/06/25 22:45:31 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 20:19:04 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void			key_ctrl_l(t_j *j)
 {
-	TPS("cl");
-	(void)j;
+	PS(j->caps.cl);
+	PS(tgoto(j->caps.ch, 0, 0));
+	PN(j->current_line.str, j->current_line.length);
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 15:10:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 20:15:55 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,25 @@ typedef struct	s_binding
 # define KEY_RIGHT			4414235
 # define KEY_DOWN			4348699
 
+# define KEY_CTRL_RIGHT		73895905418011
+# define KEY_CTRL_LEFT		74995417045787
+# define KEY_ALT_RIGHT		73887315483419
+# define KEY_ALT_LEFT		74986827111195
 # define KEY_SHIFT_RIGHT	73883020516123
 # define KEY_SHIFT_LEFT		74982532143899
 # define KEY_CTRL_S_RIGHT	73900200385307
 # define KEY_CTRL_S_LEFT	74999712013083
-# define KEY_ALT_S_RIGHT	18911811444235035
-# define KEY_ALT_S_LEFT		19193286420945691
+# define KEY_ALT_S_RIGHT	73891610450715
+# define KEY_ALT_S_LEFT		74991122078491
 
-# define KEY_ESC			27
 # define KEY_BACK			127
 # define KEY_DELETE			2117294875
+# define KEY_ALT_BACK		32539
+# define KEY_ALT_DELETE		138758501653275
+# define KEY_CTRL_DELETE	138767091587867
+
 # define KEY_RETURN			10
+# define KEY_ESC			27
 # define KEY_END			4607771
 # define KEY_HOME			4738843
 # define KEY_PAGEUP			2117425947

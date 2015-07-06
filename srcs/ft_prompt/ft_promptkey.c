@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 15:10:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 20:15:28 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 const t_binding	g_prompt_bindings[] = {
 	{KEY_ALL,			&key_restore_tab},
-	{0x03,				&key_int},
-	{0x04,				&key_eof},
+	{KEY_CTRL_C,		&key_int},
+	{KEY_CTRL_D,		&key_eof},
 	{'\r',				&key_nl},
+	{'\n',				&key_nl},
 	{'\t',				&key_tab},
 	{KEY_SHIFT_TAB,		&key_shift_tab},
 	{KEY_UP,			&key_up},
@@ -24,8 +25,10 @@ const t_binding	g_prompt_bindings[] = {
 	{KEY_DOWN,			&key_down},
 	{KEY_LEFT,			&key_left},
 	{KEY_DELETE,		&key_delete},
+	{KEY_ALT_DELETE,	&key_ctrl_delete},
+	{KEY_CTRL_DELETE,	&key_ctrl_delete},
 	{KEY_BACK,			&key_backspace},
-	{138767091587867,	&key_ctrl_delete},
+	{KEY_ALT_BACK,		&key_ctrl_backspace},
 	{KEY_CTRL_H,		&key_ctrl_backspace},
 	{KEY_CTRL_A,		&key_ctrl_a},
 	{KEY_HOME,			&key_ctrl_a},
@@ -44,10 +47,10 @@ const t_binding	g_prompt_bindings[] = {
 	{KEY_CTRL_S_LEFT,	&key_ctrl_shift_left},
 	{KEY_ALT_S_RIGHT,	&key_ctrl_shift_right},
 	{KEY_ALT_S_LEFT,	&key_ctrl_shift_left},
-	{1146821403,		&key_ctrl_left},
-	{74995417045787,	&key_ctrl_left},
-	{1130044187,		&key_ctrl_right},
-	{73895905418011,	&key_ctrl_right},
+	{KEY_CTRL_LEFT,		&key_ctrl_left},
+	{KEY_ALT_LEFT,		&key_ctrl_left},
+	{KEY_CTRL_RIGHT,	&key_ctrl_right},
+	{KEY_ALT_RIGHT,		&key_ctrl_right},
 	{'\0',				NULL}
 };
 
@@ -65,7 +68,7 @@ void			ft_promptkey(t_prompt *p, t_ulong key)
 				return ;
 		}
 	if (key >= 128 || !IS(key, IS_PRINT | IS_WHITE))
-		ft_printf("\r\n[DEBUG] Unhandled key: %lld\r\n", key);
+		ft_printf("\r\n[DEBUG] Unhandled key: %lld (%.8r)\r\n", key, &key);
 	i = ft_strlen((char*)&key);
 	ft_dstrset(&(p->line), p->cursor, p->cursor + p->selection,
 		SUB((char*)&key, i));
