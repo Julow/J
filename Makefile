@@ -95,6 +95,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/ft_prompt/keys/key_tab.o \
 	o/srcs/keys/key_ctrl_f.o \
 	o/srcs/keys/key_ctrl_l.o \
+	o/srcs/keys/key_ctrl_p.o \
 	o/srcs/keys/key_ctrl_r.o \
 	o/srcs/keys/key_debug.o \
 	o/srcs/keys/key_refresh.o
@@ -308,6 +309,10 @@ o/srcs/keys/key_ctrl_f.o: srcs/keys/key_ctrl_f.c include/ft_hist.h include/ft_pr
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/keys/key_ctrl_l.o: srcs/keys/key_ctrl_l.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h
+	@mkdir -p o/srcs/keys 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/keys/key_ctrl_p.o: srcs/keys/key_ctrl_p.c include/ft_hist.h include/ft_proc.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h
 	@mkdir -p o/srcs/keys 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

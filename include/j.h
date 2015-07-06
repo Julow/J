@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 16:03:31 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 20:51:01 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct	s_caps
 	char			*ch; // Move cursor x (Maybe unsupported)
 	char			*ce; // Clear from cursor to right
 	char			*cl; // Clear screen
+	char			*ti;
+	char			*te;
+	char			*cm;
 }				t_caps;
 
 typedef struct	s_j
@@ -84,6 +87,7 @@ typedef struct	s_j
 	t_prompt		prompt;
 	t_prompt		search_prompt;
 	t_prompt		ask_prompt;
+	t_prompt		ctrl_p_prompt;
 }				t_j;
 
 # define FLAG_TI		(1 << 1)
@@ -123,6 +127,7 @@ void			key_refresh(t_j *j);
 void			key_ctrl_l(t_j *j);
 void			key_ctrl_r(t_j *j);
 void			key_ctrl_f(t_j *j);
+void			key_ctrl_p(t_j *j);
 void			key_debug(t_j *j);
 
 /*

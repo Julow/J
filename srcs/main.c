@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/04 21:24:16 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 20:51:33 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,16 @@
 static t_bool	init_caps(t_j *j)
 {
 	if ((j->caps.ch = tgetstr("ch", NULL)) == NULL
-		|| (j->caps.ce = tgetstr("ce", NULL)) == NULL
-		|| (j->caps.cl = tgetstr("cl", NULL)) == NULL)
+		|| (j->caps.ce = tgetstr("ce", NULL)) == NULL)
 		return (false);
+	if ((j->caps.cl = tgetstr("cl", NULL)) == NULL)
+		j->caps.cl = "";
+	if ((j->caps.ti = tgetstr("ti", NULL)) == NULL)
+		j->caps.ti = "";
+	if ((j->caps.te = tgetstr("te", NULL)) == NULL)
+		j->caps.te = "";
+	if ((j->caps.cm = tgetstr("cm", NULL)) == NULL)
+		j->caps.cm = "";
 	return (true);
 }
 
@@ -28,12 +35,9 @@ static void		init_j(t_j *j)
 		.on_return = &j_flush,
 		.data = j
 	});
-	ft_promptinit(&(j->search_prompt), (t_prompt_events){
-		.data = j
-	});
-	ft_promptinit(&(j->ask_prompt), (t_prompt_events){
-		.data = j
-	});
+	ft_promptinit(&(j->search_prompt), (t_prompt_events){ .data = j });
+	ft_promptinit(&(j->ask_prompt), (t_prompt_events){ .data = j });
+	ft_promptinit(&(j->ctrl_p_prompt), (t_prompt_events){ .data = j });
 	ft_tmakeraw(&(j->term));
 }
 
