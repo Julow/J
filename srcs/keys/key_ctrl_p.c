@@ -6,13 +6,35 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/06 20:26:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 21:45:46 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 22:06:10 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 #include "ft_prompt_keys.h"
+#include "ft_colors.h"
 #include <unistd.h>
+
+static void		put_hightlight(t_sub sub, t_sub pattern)
+{
+	int				i;
+
+	i = -1;
+	while (++i < sub.length)
+	{
+		if (pattern.length > 0 && sub.str[i] == pattern.str[0]
+			&& (sub.length - pattern.length) >= i
+			&& ft_memcmp(sub.str + i, pattern.str, pattern.length) == 0)
+		{
+			PS(BG_YELLOW);
+			PN(pattern.str, pattern.length);
+			PS(BG_RESET);
+			i += pattern.length - 1;
+		}
+		else
+			PC(sub.str[i]);
+	}
+}
 
 static void		print_outputs(t_j *j)
 {
@@ -29,7 +51,8 @@ static void		print_outputs(t_j *j)
 		while (y > 0 && tmp != NULL)
 		{
 			PS(tgoto(j->caps.cm, 3, --y));
-			PN(tmp->str, tmp->length);
+			put_hightlight(SUB(tmp->str, tmp->length),
+				SUB(j->ctrl_p_prompt.line.str, j->ctrl_p_prompt.line.length));
 			PC('\n');
 			tmp = tmp->prev;
 		}
