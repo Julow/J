@@ -50,6 +50,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_key.o \
 	o/srcs/j_output.o \
+	o/srcs/j_resize.o \
 	o/srcs/j_search.o \
 	o/srcs/j_set.o \
 	o/srcs/main.o \
@@ -129,6 +130,10 @@ o/srcs/j_key.o: srcs/j_key.c include/ft_hist.h include/ft_prompt.h include/ft_pr
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/j_output.o: srcs/j_output.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h
+	@mkdir -p o/srcs 2> /dev/null || true
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/j_resize.o: srcs/j_resize.c include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h
 	@mkdir -p o/srcs 2> /dev/null || true
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 

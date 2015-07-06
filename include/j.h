@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 20:51:01 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/06 22:40:11 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ t_bool			j_ask(t_j *j, char const *q, t_sub *res);
 
 void			j_output_save(t_j *j);
 void			j_output_line(t_j *j);
+
+void			j_resize(t_j *j);
 
 /*
 ** keys
