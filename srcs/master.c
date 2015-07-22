@@ -6,12 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/07 00:37:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 00:23:08 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 #include "ft_prompt_keys.h"
+#include "ft_getkey.h"
 #include <unistd.h>
 #include <sys/select.h>
 
@@ -21,14 +22,22 @@ static t_bool	read_stdin(t_j *j)
 	int				len;
 
 	key = 0;
-	if ((len = read(0, &key, sizeof(t_ulong))) <= 0)
-		return (false);
+	len = 0; // TEST
+	// if ((len = read(0, &key, sizeof(t_ulong))) <= 0)
+	// 	return (false);
 	if (key == KEY_CTRL_SPACE)
 		j->flags ^= FLAG_TI;
 	if (j->flags & FLAG_TI)
 		return (write(j->master, &key, len), true);
-	j_key(j, key);
-	j_set(j, J_REFRESH);
+	// j_key(j, key);
+	// j_set(j, J_REFRESH);
+	{ // TEST
+		t_key			k = ft_getkey();
+
+		ft_printf("\r\nKey: %x (%c) (%d, %d, %d)", k.c, (char)k.c, k.ctrl, k.shift, k.alt);
+		if (k.c == 0)
+			return (false);
+	}
 	return (true);
 }
 
