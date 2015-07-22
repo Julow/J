@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/07 00:55:27 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/07 22:39:37 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct	s_j
 # define J_HIDE			(1 << 1)
 # define J_SHOW			(1 << 2)
 # define J_REFRESH		(J_HIDE | J_SHOW)
+# define J_ERASE		(1 << 3)
+# define J_PS1			(1 << 4)
 
 /*
 ** argv
