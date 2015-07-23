@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/22 21:33:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 20:13:29 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:23:32 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ struct
 {
 	int		end;
 	int		c;
+	int		flags;
 } const			g_seq_ends[] = {
-	{'A', GETKEY_UP},
-	{'B', GETKEY_DOWN},
-	{'C', GETKEY_RIGHT},
-	{'D', GETKEY_LEFT},
-	{'H', GETKEY_HOME},
-	{'F', GETKEY_END},
-	{3, GETKEY_DELETE},
-	{5, GETKEY_PAGEUP},
-	{6, GETKEY_PAGEDOWN},
-	{'\0', 0}
+	{'A', KEY_UP, 0},
+	{'B', KEY_DOWN, 0},
+	{'C', KEY_RIGHT, 0},
+	{'D', KEY_LEFT, 0},
+	{'H', KEY_HOME, 0},
+	{'F', KEY_END, 0},
+	{'Z', '\t', KEY_SHIFT},
+	{3, KEY_DELETE, 0},
+	{5, KEY_PAGEUP, 0},
+	{6, KEY_PAGEDOWN, 0},
+	{'\0', 0, 0}
 };
 
 static char		next_char(void)
@@ -75,10 +77,11 @@ static t_key	parse_seq_end(int n2, char end)
 		if (g_seq_ends[i].end == end)
 		{
 			key.c = g_seq_ends[i].c;
+			key.flags |= g_seq_ends[i].flags;
 			return (key);
 		}
 	}
-	ft_printf("\r\nDEBUG: Invalid end: %c\r\n", end);
+	ft_printf("\r\nDEBUG: Invalid end: (%d) %c (%.1r)\r\n", n2, end, &end);
 	return (key);
 }
 
@@ -121,8 +124,8 @@ t_key			ft_getkey(void)
 			c = '\033';
 	}
 	else if (c >= 1 && c <= 26)
-		return (KEY('a' + c - 1, GETKEY_CTRL));
+		return (KEY('a' + c - 1, KEY_CTRL));
 	else if (IS(c, IS_UPPER))
-		return (KEY(c, GETKEY_SHIFT));
+		return (KEY(c, KEY_SHIFT));
 	return (KEY(c, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/23 00:18:47 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 19:44:09 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:20:23 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@ typedef struct	s_key
 
 # define GETKEY_SPECIAL		0xF0000
 
-# define GETKEY_CTRL		(1 << 2)
-# define GETKEY_ALT			(1 << 1)
-# define GETKEY_SHIFT		(1 << 0)
+# define KEY_CTRL			(1 << 2)
+# define KEY_ALT			(1 << 1)
+# define KEY_SHIFT			(1 << 0)
 
-# define GETKEY_BACKSPACE	0x7F
-# define GETKEY_ESC			'\033'
-# define GETKEY_UP			(GETKEY_SPECIAL + 1)
-# define GETKEY_RIGHT		(GETKEY_SPECIAL + 2)
-# define GETKEY_DOWN		(GETKEY_SPECIAL + 3)
-# define GETKEY_LEFT		(GETKEY_SPECIAL + 4)
-# define GETKEY_DELETE		(GETKEY_SPECIAL + 5)
-# define GETKEY_HOME		(GETKEY_SPECIAL + 7)
-# define GETKEY_END			(GETKEY_SPECIAL + 8)
-# define GETKEY_PAGEUP		(GETKEY_SPECIAL + 9)
-# define GETKEY_PAGEDOWN	(GETKEY_SPECIAL + 10)
+# define KEY_BACKSPACE		0x7F
+# define KEY_ESC			'\033'
+# define KEY_UP				(GETKEY_SPECIAL + 1)
+# define KEY_RIGHT			(GETKEY_SPECIAL + 2)
+# define KEY_DOWN			(GETKEY_SPECIAL + 3)
+# define KEY_LEFT			(GETKEY_SPECIAL + 4)
+# define KEY_DELETE			(GETKEY_SPECIAL + 5)
+# define KEY_HOME			(GETKEY_SPECIAL + 7)
+# define KEY_END			(GETKEY_SPECIAL + 8)
+# define KEY_PAGEUP			(GETKEY_SPECIAL + 9)
+# define KEY_PAGEDOWN		(GETKEY_SPECIAL + 10)
 
 t_key			ft_getkey(void);
 

@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 20:10:39 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 19:54:03 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:18:43 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,58 +29,6 @@ typedef struct	s_binding
 /*
 ** ========================================================================== **
 */
-
-// # define KEY_CTRL_A			1
-// # define KEY_CTRL_C			3
-// # define KEY_CTRL_D			4
-// # define KEY_CTRL_E			5
-// # define KEY_CTRL_F			6
-// # define KEY_CTRL_G			7
-// # define KEY_CTRL_H			8
-// # define KEY_CTRL_K			11
-// # define KEY_CTRL_L			12
-// # define KEY_CTRL_O			15
-// # define KEY_CTRL_P			16
-// # define KEY_CTRL_R			18
-// # define KEY_CTRL_V			22
-// # define KEY_CTRL_W			23
-// # define KEY_CTRL_X			24
-// # define KEY_CTRL_Y			25
-// # define KEY_CTRL_SLASH		31
-// # define KEY_CTRL_SPACE		0
-
-// # define KEY_SHIFT_TAB		5921563
-
-// # define KEY_ALL			((t_ulong)-1)
-
-// # define KEY_UP				4283163
-// # define KEY_LEFT			4479771
-// # define KEY_RIGHT			4414235
-// # define KEY_DOWN			4348699
-
-// # define KEY_CTRL_RIGHT		73895905418011
-// # define KEY_CTRL_LEFT		74995417045787
-// # define KEY_ALT_RIGHT		73887315483419
-// # define KEY_ALT_LEFT		74986827111195
-// # define KEY_SHIFT_RIGHT	73883020516123
-// # define KEY_SHIFT_LEFT		74982532143899
-// # define KEY_CTRL_S_RIGHT	73900200385307
-// # define KEY_CTRL_S_LEFT	74999712013083
-// # define KEY_ALT_S_RIGHT	73891610450715
-// # define KEY_ALT_S_LEFT		74991122078491
-
-// # define KEY_BACK			127
-// # define KEY_DELETE			2117294875
-// # define KEY_ALT_BACK		32539
-// # define KEY_ALT_DELETE		138758501653275
-// # define KEY_CTRL_DELETE	138767091587867
-
-// # define KEY_RETURN			10
-// # define KEY_ESC			27
-// # define KEY_END			4607771
-// # define KEY_HOME			4738843
-// # define KEY_PAGEUP			2117425947
-// # define KEY_PAGEDOWN		2117491483
 
 void			key_nl(t_prompt *p);
 void			key_eof(t_prompt *p);

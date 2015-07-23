@@ -46,7 +46,6 @@ C_HEADS := -I include -I libft
 #
 
 O_FILES := o/srcs/argv.o \
-	o/srcs/ft_getkey.o \
 	o/srcs/j_ask.o \
 	o/srcs/j_flush.o \
 	o/srcs/j_key.o \
@@ -60,6 +59,7 @@ O_FILES := o/srcs/argv.o \
 	o/srcs/slave.o \
 	o/srcs/ft/ft_call.o \
 	o/srcs/ft/ft_dstrreplace.o \
+	o/srcs/ft/ft_getkey.o \
 	o/srcs/ft/ft_hmatch.o \
 	o/srcs/ft/ft_open.o \
 	o/srcs/ft/ft_openpt.o \
@@ -119,9 +119,6 @@ $(NAME): $(O_FILES)
 o/srcs/argv.o: srcs/argv.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_range.h include/j.h include/msg.h | o/srcs
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
-o/srcs/ft_getkey.o: srcs/ft_getkey.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_range.h include/j.h include/msg.h | o/srcs
-	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
-
 o/srcs/j_ask.o: srcs/j_ask.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h | o/srcs
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
@@ -159,6 +156,9 @@ o/srcs/ft/ft_call.o: srcs/ft/ft_call.c include/ft_getkey.h include/ft_hist.h inc
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft/ft_dstrreplace.o: srcs/ft/ft_dstrreplace.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h | o/srcs/ft
+	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
+
+o/srcs/ft/ft_getkey.o: srcs/ft/ft_getkey.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h | o/srcs/ft
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft/ft_hmatch.o: srcs/ft/ft_hmatch.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_prompt_keys.h include/ft_range.h include/j.h include/msg.h | o/srcs/ft

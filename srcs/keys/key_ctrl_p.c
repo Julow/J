@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/06 20:26:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 19:39:49 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:23:40 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void			key_ctrl_p(t_j *j)
 	{
 		print_outputs(j);
 		key = ft_getkey();
-		if (key.c == EOF || ft_keyequ(key, KEY('d', GETKEY_CTRL))
-			|| ft_keyequ(key, KEY('c', GETKEY_CTRL)) || key.c == KEY_ESC)
+		if (key.c == EOF || ft_keyequ(key, KEY('d', KEY_CTRL))
+			|| ft_keyequ(key, KEY('c', KEY_CTRL)) || key.c == KEY_ESC)
 			break ;
 		ft_promptkey(&(j->ctrl_p_prompt), key);
 	}

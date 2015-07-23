@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/26 22:02:24 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 20:03:06 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:21:45 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_hist		*search_prev(t_j *j, t_hist *hist, t_hist *def)
 
 static t_hist		*search_key(t_j *j, t_key key, t_hist *hist)
 {
-	if (key.c != GETKEY_PAGEDOWN)
+	if (key.c != KEY_PAGEDOWN)
 		ft_promptkey(&(j->search_prompt), key);
 	return (search_prev(j, hist, NULL));
 }
@@ -65,15 +65,15 @@ t_bool				j_search(t_j *j, t_hist *hist, t_sub *res)
 	{
 		search_refresh(j, hist);
 		key = ft_getkey();
-		if (key.c == EOF || ft_keyequ(key, KEY('d', GETKEY_CTRL))
-			|| ft_keyequ(key, KEY('c', GETKEY_CTRL)) || key.c == GETKEY_ESC)
+		if (key.c == EOF || ft_keyequ(key, KEY('d', KEY_CTRL))
+			|| ft_keyequ(key, KEY('c', KEY_CTRL)) || key.c == KEY_ESC)
 			break ;
-		else if (ft_keyequ(key, KEY('m', GETKEY_CTRL)))
+		else if (ft_keyequ(key, KEY('m', KEY_CTRL)))
 			return ((*res = (hist != NULL) ? SUB(hist->str, hist->length)
 				: SUBC("")), true);
-		else if (key.c == GETKEY_DOWN)
+		else if (key.c == KEY_DOWN)
 			hist = (hist == NULL) ? NULL : search_next(j, hist->next, hist);
-		else if (key.c == GETKEY_UP)
+		else if (key.c == KEY_UP)
 			hist = (hist == NULL) ? NULL : search_prev(j, hist->prev, hist);
 		else
 			hist = search_key(j, key, begin);
