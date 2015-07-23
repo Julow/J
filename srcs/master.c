@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:30:46 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 00:23:08 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 19:02:06 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,18 @@
 
 static t_bool	read_stdin(t_j *j)
 {
-	t_ulong			key;
+	char			buff[MASTER_BUFF];
 	int				len;
 
-	key = 0;
-	len = 0; // TEST
-	// if ((len = read(0, &key, sizeof(t_ulong))) <= 0)
-	// 	return (false);
-	if (key == KEY_CTRL_SPACE)
-		j->flags ^= FLAG_TI;
 	if (j->flags & FLAG_TI)
-		return (write(j->master, &key, len), true);
-	// j_key(j, key);
-	// j_set(j, J_REFRESH);
-	{ // TEST
-		t_key			k = ft_getkey();
-
-		ft_printf("\r\nKey: %x (%c) (%d, %d, %d)", k.c, (char)k.c, k.ctrl, k.shift, k.alt);
-		if (k.c == 0)
+	{
+		if ((len = read(0, &buff, MASTER_BUFF)) <= 0)
 			return (false);
+		write(j->master, buff, len);
+		return (true);
 	}
+	j_key(j, ft_getkey());
+	j_set(j, J_REFRESH);
 	return (true);
 }
 

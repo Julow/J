@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:33 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 00:19:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 18:59:56 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # include "ft_term.h"
 # include "ft_prompt.h"
+# include "ft_getkey.h"
 
 # include <time.h>
 
@@ -35,6 +36,7 @@
 **  Use of ft_regex
 **  Config
 **  Put clipboard into a tab completion
+**  ctrl+space
 */
 
 # define PN(s,n)			(ft_write(FTOUT, (s), (n)))
@@ -116,7 +118,7 @@ void			scan_output(t_j *j, t_sub output);
 void			j_set(t_j *j, int flags);
 
 void			j_flush(t_j *j);
-void			j_key(t_j *j, t_ulong key);
+void			j_key(t_j *j, t_key key);
 
 t_bool			j_search(t_j *j, t_hist *hist, t_sub *res);
 t_bool			j_ask(t_j *j, char const *q, t_sub *res);

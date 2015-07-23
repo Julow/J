@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/06 20:26:57 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 22:06:10 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 19:39:49 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ static void		print_outputs(t_j *j)
 
 void			key_ctrl_p(t_j *j)
 {
-	t_ulong			key;
+	t_key			key;
 
 	PS(j->caps.ti);
 	while (true)
 	{
 		print_outputs(j);
-		key = 0;
-		if (read(0, &key, sizeof(t_ulong)) <= 0 || key == KEY_CTRL_D
-			|| key == KEY_CTRL_C || key == KEY_ESC)
+		key = ft_getkey();
+		if (key.c == EOF || ft_keyequ(key, KEY('d', GETKEY_CTRL))
+			|| ft_keyequ(key, KEY('c', GETKEY_CTRL)) || key.c == KEY_ESC)
 			break ;
 		ft_promptkey(&(j->ctrl_p_prompt), key);
 	}

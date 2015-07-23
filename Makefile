@@ -116,7 +116,7 @@ all: $(addsuffix /.git,$(MODULES)) $(LIBS) $(NAME)
 $(NAME): $(O_FILES)
 	@$(MSG_0) $@ ; $(LD_CC) -o $@ $(O_FILES) $(LD_FLAGS) && $(MSG_END) || $(MSG_1) $@
 
-o/srcs/argv.o: srcs/argv.c include/ft_hist.h include/ft_prompt.h include/ft_range.h include/j.h include/msg.h | o/srcs
+o/srcs/argv.o: srcs/argv.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_range.h include/j.h include/msg.h | o/srcs
 	@$(MSG_0) $< ; clang $(C_FLAGS) $(C_HEADS) -c -o $@ $< || ($(MSG_1) $< && false)
 
 o/srcs/ft_getkey.o: srcs/ft_getkey.c include/ft_getkey.h include/ft_hist.h include/ft_prompt.h include/ft_range.h include/j.h include/msg.h | o/srcs

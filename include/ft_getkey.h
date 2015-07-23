@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/23 00:18:47 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 00:20:00 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 19:44:09 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 typedef struct	s_key
 {
 	int				c;
-	t_bool			ctrl:1;
-	t_bool			shift:1;
-	t_bool			alt:1;
+	int				flags;
 }				t_key;
 
 # define GETKEY_MAX_WAIT	{0, 100}
 
-# define KEY(c,t,s,a)		((t_key){(c), (t), (s), (a)})
+# define KEY(c,f)			((t_key){(c), (f)})
 
 # define GETKEY_SPECIAL		0xF0000
 
@@ -37,7 +35,7 @@ typedef struct	s_key
 # define GETKEY_ESC			'\033'
 # define GETKEY_UP			(GETKEY_SPECIAL + 1)
 # define GETKEY_RIGHT		(GETKEY_SPECIAL + 2)
-# define GETKEY_BOTTOM		(GETKEY_SPECIAL + 3)
+# define GETKEY_DOWN		(GETKEY_SPECIAL + 3)
 # define GETKEY_LEFT		(GETKEY_SPECIAL + 4)
 # define GETKEY_DELETE		(GETKEY_SPECIAL + 5)
 # define GETKEY_HOME		(GETKEY_SPECIAL + 7)
@@ -46,5 +44,10 @@ typedef struct	s_key
 # define GETKEY_PAGEDOWN	(GETKEY_SPECIAL + 10)
 
 t_key			ft_getkey(void);
+
+static inline t_bool	ft_keyequ(t_key k1, t_key k2)
+{
+	return (k1.c == k2.c && k1.flags == k2.flags);
+}
 
 #endif

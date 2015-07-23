@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/25 21:54:15 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 16:27:58 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 19:20:54 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "ft_dstr.h"
 # include "ft_hist.h"
+# include "ft_getkey.h"
 # include "ft_range.h"
 
 # define PROMPT_MARGIN	8
@@ -57,7 +58,7 @@ typedef struct	s_prompt
 }				t_prompt;
 
 void			ft_promptinit(t_prompt *p, t_prompt_events events);
-void			ft_promptkey(t_prompt *p, t_ulong key);
+void			ft_promptkey(t_prompt *p, t_key key);
 
 /*
 ** ft_promptput

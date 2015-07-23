@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 20:26:48 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 19:41:22 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 #include "ft_prompt_keys.h"
 
 const t_binding	g_bindings[] = {
-	{KEY_ALL,			&key_refresh},
-	{KEY_CTRL_L,		&key_ctrl_l},
-	{KEY_CTRL_R,		&key_ctrl_r},
-	{KEY_CTRL_F,		&key_ctrl_f},
-	{KEY_CTRL_P,		&key_ctrl_p},
-	{KEY_CTRL_SLASH,	&key_debug},
-	{'\0',				NULL}
+	{KEY('\0', 0),				&key_refresh},
+	{KEY('l', GETKEY_CTRL),		&key_ctrl_l},
+	{KEY('r', GETKEY_CTRL),		&key_ctrl_r},
+	{KEY('f', GETKEY_CTRL),		&key_ctrl_f},
+	{KEY('p', GETKEY_CTRL),		&key_ctrl_p},
+	{KEY('\0', 0),				NULL}
 };
 
-void			j_key(t_j *j, t_ulong key)
+void			j_key(t_j *j, t_key key)
 {
 	int				i;
 
 	i = -1;
 	while (g_bindings[++i].f != NULL)
-		if (g_bindings[i].key == key || g_bindings[i].key == KEY_ALL)
+		if (ft_keyequ(g_bindings[i].key, key) || g_bindings[i].key.c == '\0')
 		{
 			g_bindings[i].f(j, key);
-			if (g_bindings[i].key != KEY_ALL)
+			if (g_bindings[i].key.c != '\0')
 				return ;
 		}
 	ft_promptkey(&(j->prompt), key);

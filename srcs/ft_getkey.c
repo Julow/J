@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/22 21:33:32 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 00:20:23 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/23 20:13:29 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ struct
 	int		c;
 } const			g_seq_ends[] = {
 	{'A', GETKEY_UP},
-	{'B', GETKEY_BOTTOM},
+	{'B', GETKEY_DOWN},
 	{'C', GETKEY_RIGHT},
 	{'D', GETKEY_LEFT},
 	{'H', GETKEY_HOME},
@@ -51,7 +51,7 @@ static char		next_char(void)
 
 static t_key	parse_utf8(char c)
 {
-	return (KEY(c, false, false, false));
+	return (KEY(c, 0));
 	// TODO utf-8
 }
 
@@ -63,18 +63,12 @@ static t_key	parse_utf8(char c)
 ** end (char)
 ** if end == '~': n1 is used
 */
-static t_key	parse_seq_end(int special, char end)
+static t_key	parse_seq_end(int n2, char end)
 {
 	int				i;
 	t_key			key;
 
-	key = KEY('\0', false, false, false);
-	if (special & GETKEY_CTRL)
-		key.ctrl = true;
-	if (special & GETKEY_ALT)
-		key.alt = true;
-	if (special & GETKEY_SHIFT)
-		key.shift = true;
+	key = KEY('\0', n2 - 1);
 	i = -1;
 	while (g_seq_ends[++i].end != '\0')
 	{
@@ -84,6 +78,7 @@ static t_key	parse_seq_end(int special, char end)
 			return (key);
 		}
 	}
+	ft_printf("\r\nDEBUG: Invalid end: %c\r\n", end);
 	return (key);
 }
 
@@ -106,8 +101,7 @@ static t_key	parse_seq(void)
 		n2 = c - '0';
 		c = next_char();
 	}
-	ft_printf("\r\nDEBUG: \\033[%d;%d%c", n1, n2, c);
-	return (parse_seq_end(n2 - 1, (c == '~') ? n1 : c));
+	return (parse_seq_end(n2, (c == '~') ? n1 : c));
 }
 
 t_key			ft_getkey(void)
@@ -127,8 +121,8 @@ t_key			ft_getkey(void)
 			c = '\033';
 	}
 	else if (c >= 1 && c <= 26)
-		return (KEY('a' + c - 1, true, false, false));
+		return (KEY('a' + c - 1, GETKEY_CTRL));
 	else if (IS(c, IS_UPPER))
-		return (KEY(c, false, true, false));
-	return (KEY(c, false, false, false));
+		return (KEY(c, GETKEY_SHIFT));
+	return (KEY(c, 0));
 }
