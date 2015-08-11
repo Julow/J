@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 22:50:45 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/07 01:05:19 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/25 21:42:38 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ static void		init_j(t_j *j)
 	ft_tmakeraw(&(j->term));
 }
 
+static void		usage(char const *arg0)
+{
+	P("Usage: %s [options] [command ...]\n"
+		, arg0);
+	FL;
+}
+
 int				main(int argc, char **argv)
 {
 	t_j				j;
@@ -52,7 +59,7 @@ int				main(int argc, char **argv)
 		return (ft_fdprintf(2, E_TERM), 1);
 	init_j(&j);
 	if (!parse_argv(&j, argc, argv))
-		return (2);
+		return (usage(argv[0]), 2);
 	if (!start_slave(&j))
 		return (ft_fdprintf(2, E_SLAVE), 1);
 	j_resize(&j);

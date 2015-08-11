@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/16 00:39:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/23 20:22:28 by juloo            ###   ########.fr       */
+/*   Updated: 2015/07/25 21:20:31 by juloo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			ft_promptkey(t_prompt *p, t_key key)
 			if (g_prompt_bindings[i].key.c != '\0')
 				return ;
 		}
-	if (key.c < 0 || key.c >= 128 || key.flags != 0)
+	if (key.c < 0 || key.c >= 128 || key.flags & (KEY_CTRL | KEY_ALT))
 		return ;
 	ft_dstrset(&(p->line), p->cursor, p->cursor + p->selection,
 		SUB((char*)&(key.c), 1));
