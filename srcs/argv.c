@@ -6,7 +6,7 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/06/15 23:41:30 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/25 23:08:15 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/13 16:12:08 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_bool	arg_history(t_j *j, t_args *args, char *opt, char *arg)
 static t_bool	arg_help(void)
 {
 	ft_exec((char*[3]){"man", "j", NULL}, NULL);
-	P(E_MAN);
+	PS(E_MAN);
 	exit(1);
 	return (false);
 }

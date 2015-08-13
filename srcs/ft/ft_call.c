@@ -6,13 +6,13 @@
 /*   By: juloo <juloo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/06 15:52:22 by juloo             #+#    #+#             */
-/*   Updated: 2015/07/06 16:28:57 by juloo            ###   ########.fr       */
+/*   Updated: 2015/08/13 16:12:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "j.h"
 #include <unistd.h>
-#include <wait.h>
+#include <sys/wait.h>
 #include <errno.h>
 
 /*
