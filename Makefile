@@ -51,7 +51,7 @@ $(subst libft,,$(LIBS)):
 	make -C $@
 
 libft:
-	make -C $@ extra/ft_term
+	JOBS=1 make -C $@ extra/ft_term
 
 # Create obj directories
 $(O_DIR)/%/:
