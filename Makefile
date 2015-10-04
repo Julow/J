@@ -1,57 +1,114 @@
 #
 
 # Executable name
-NAME := j
+NAME		:= j
 
 # Project directories
-DIRS := srcs include
+DIRS		:= srcs include
 
 # Git submodule to init
-MODULES := libft
+MODULES		:= libft
 # Makefiles to call
-LIBS := libft
+LIBS		:= libft(JOBS=1 make -C ?name? extra/ft_term)
 
-# Compilation and linking flags
-FLAGS := -Wall -Wextra -O2
-# Compilation flags
-HEADS := $(addprefix -I,$(DIRS)) -Ilibft -Ilibft/extra
-# Linking flags
-LINKS := -Llibft -lft -ltermcap
+# Compilers
+LD			= clang -o
+CC			= clang
+CXX			= clang++
+
+# Base flags
+BASE_FLAGS	= -Wall -Wextra
+HEAD_FLAGS	= $(addprefix -I,$(DIRS)) -Ilibft -Ilibft/extra
+
+# Compilation flags (per language)
+C_FLAGS		= $(HEAD_FLAGS) $(BASE_FLAGS)
+CPP_FLAGS	= $(HEAD_FLAGS) $(BASE_FLAGS) -std=c++14
+
+LINK_FLAGS	= $(BASE_FLAGS) -Llibft -lft -ltermcap
+
+ifeq ($(DEBUG_MODE),1)
+	# Extra flags used in debug mode
+	BASE_FLAGS	+= -g
+	C_FLAGS		+=
+	CPP_FLAGS	+=
+else
+	# Extra flags used when not in debug mode
+	BASE_FLAGS	+= -O2
+	C_FLAGS		+=
+	CPP_FLAGS	+=
+endif
+
+DEBUG_MODE	?= 0
+export DEBUG_MODE
+
+# Jobs
+JOBS			:= 4
+
+# Column output
+COLUMN_OUTPUT	:= 1
+
+ifeq ($(COLUMN_OUTPUT),0)
+	PRINT_OK	= printf '\033[32m$<\033[0m\n'
+	PRINT_LINK	= printf '\033[32m$@\033[0m\n'
+else
+	PRINT_OK	= echo $(patsubst $(firstword $(DIRS))/%,%,$<) >> $(PRINT_FILE)
+	PRINT_LINK	= printf '\n\033[32m$@\033[0m\n'
+endif
 
 # Objects directory
-O_DIR := o
+O_DIR			:= o
 
 # Depend file name
-DEPEND := depend.mk
+DEPEND			:= depend.mk
 
 # tmp
-MODULE_RULES := $(addsuffix /.git,$(MODULES))
+MODULE_RULES	:= $(addsuffix /.git,$(MODULES))
+PRINT_FILE		:= .tmp_print
+SHELL			:= /bin/bash
 
 # Default rule (need to be before any include)
-all: $(MODULE_RULES) $(LIBS) $(NAME)
+all: $(MODULE_RULES) libs
+ifeq ($(COLUMN_OUTPUT),0)
+	make -j$(JOBS) $(NAME)
+else
+	PER_LINE=$$((`tput cols` / $$(($(MAX_SOURCE_LEN) + 2))));			\
+	CURR=0;																\
+	rm -f $(PRINT_FILE);												\
+	touch $(PRINT_FILE);												\
+	tail -n0 -f $(PRINT_FILE) | while read l;							\
+	do																	\
+		if [[ $$CURR -ge $$PER_LINE ]];									\
+		then															\
+			CURR=0;														\
+			echo;														\
+		fi;																\
+		CURR=$$(($$CURR + 1));											\
+		printf '\033[32m%-*s\033[0m  ' "$(MAX_SOURCE_LEN)" "$$l";		\
+	done &																\
+	make -j$(JOBS) $(NAME);												\
+	STATUS=$$?;															\
+	kill -9 `jobs -p`;													\
+	rm -f $(PRINT_FILE);												\
+	exit $$STATUS
+endif
 
 # Include $(O_FILES) and dependencies
 -include $(DEPEND)
 
 # Linking
-$(NAME): $(O_FILES)
-	clang $(FLAGS) -o $@ $(O_FILES) $(LINKS) && printf '\033[32m$@\033[0m\n'
+$(NAME): $(LIBS_DEPEND) $(O_FILES)
+	$(LD) $@ $(O_FILES) $(LINK_FLAGS) && $(PRINT_LINK)
 
 # Compiling
-$(O_DIR)/%.o:
-	clang $(FLAGS) $(HEADS) -c $< -o $@ && printf '\033[32m$<\033[0m\n'
+$(O_DIR)/%.o: %.c
+	$(CC) $(C_FLAGS) -c $< -o $@ && $(PRINT_OK)
+$(O_DIR)/%.o: %.cpp
+	$(CXX) $(CPP_FLAGS) -c $< -o $@ && $(PRINT_OK)
 
 # Init submodules
 $(MODULE_RULES):
 	git submodule init $(@:.git=)
 	git submodule update $(@:.git=)
-
-# Call sub Makefiles
-$(subst libft,,$(LIBS)):
-	make -C $@
-
-libft:
-	JOBS=1 make -C $@ extra/ft_term
 
 # Create obj directories
 $(O_DIR)/%/:
@@ -65,6 +122,7 @@ rebug: fclean debug
 
 # Clean obj files
 clean:
+	rm -f $(PRINT_FILE)
 	rm -f $(O_FILES)
 
 # Clean everything
@@ -74,13 +132,9 @@ fclean: clean
 # Clean and make
 re: fclean all
 
-# Update $(DEPEND) file
-$(DEPEND): Makefile
-	makemake || printf "\033[31mCannot remake $(DEPEND)\033[0m\n"
-
 # Set debug flags
 _debug:
-	$(eval FLAGS := $(DEBUG_FLAGS))
+	$(eval DEBUG_MODE = 1)
 
 .SILENT:
-.PHONY: all $(LIBS) clean fclean re debug rebug _debug
+.PHONY: all clean fclean re debug rebug _debug
